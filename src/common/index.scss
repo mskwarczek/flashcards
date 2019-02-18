@@ -1,9 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext');
+
+$color-basic: rgb(29, 30, 24);
+$color-basic2: rgb(216, 130, 32);
+$color-important: rgb(15, 221, 139);
+$color-bg: rgb(255, 255, 255);
+$color-bg2: rgb(255,227,129);
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html {
+    font-size: calc(0.6em + 0.7vw);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: $color-basic;
+    background-color: $color-bg2;
+}
+
+a {
+    text-decoration: none;
+    color: $color-basic;
+}
+
+.app {
+    max-width: 1000px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 3rem;
+    background-color: $color-bg;
+    text-align: center;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8.5em;
+    height: 3em;
+    margin: .1em;
+    padding: .3em;
+    font-size: 1em;
+    border: .1em solid $color-basic2;
+    background-color: $color-bg;
+
+    &:hover {
+        background-color: $color-basic2;
+        cursor: pointer;
+    }
+
+    &--big {
+        margin: .5em auto;
+        font-size: 2em;
+        font-weight: bold;
+    }
+}
+
 .hidden {
-    display: none;
+    visibility: hidden;
+}
+
+.test {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    width: 20em;
+    height: 20em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+
+    &__front,
+    &__back {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 1em;
+        background: $color-bg2;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+        transition: .5s ease-out;
+        box-shadow: 2px 2px 8px $color-basic2;
+    }
+
+    &__back {
+        transform: rotateY(180deg);
+    }
+
+    .flip-front {
+        transform: rotateY(180deg);
+    }
+
+    .flip-back {
+        transform: rotateY(360deg);
+    }
+
+    &__title {
+        font-weight: bold;
+    }
+
+    &__button-box {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
 }

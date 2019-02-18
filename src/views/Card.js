@@ -3,28 +3,33 @@ import PropTypes from 'prop-types';
 
 export default function Card(props) {
     const flipCard = () => {
-        const front = document.querySelector('.card-front');
-        const back = document.querySelector('.card-back');
-        front.classList.toggle('hidden');
-        back.classList.toggle('hidden');
+        const front = document.querySelector('.card__front');
+        const back = document.querySelector('.card__back');
+        front.classList.toggle('flip-front');
+        back.classList.toggle('flip-back');
     }
     return (
-        <div className='card-container'>
-            <div className='card-front'>
-                <p>{props.card.front}</p>
-                <div onClick={() => flipCard()}>Sprawdź</div>
+        <div className='card'>
+            <div className='card__front'>
+                <div className="empty"></div>
+                <p className='card__title'>{props.card.front}</p>
+                <div className='card__button-box'>
+                    <div className='button' onClick={() => flipCard()}>Sprawdź</div>
+                </div>
             </div>
-            <div className='card-back hidden'>
-                <p>{props.card.front}</p>
-                <p>{props.card.back}</p>
-                <div onClick={() => {
-                    flipCard();
-                    props.pushBackward(props.card.id)
-                }}>Muszę to jeszcze powtórzyć</div>
-                <div onClick={() => {
-                    flipCard();
-                    props.pushForward(props.card.id)
-                }}>To już umiem!</div>
+            <div className='card__back '>
+                <p className='card__title'>{props.card.front}</p>
+                <p className='card__description'>{props.card.back}</p>
+                <div className='card__button-box'>
+                    <div className='button' onClick={() => {
+                        flipCard();
+                        props.pushBackward(props.card.id)
+                    }}>Nie umiem</div>
+                    <div className='button' onClick={() => {
+                        flipCard();
+                        props.pushForward(props.card.id)
+                    }}>Umiem!</div>
+                </div>
             </div>
         </div>
     );
