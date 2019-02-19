@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import Card from './Card';
 import { pushForward, pushBackward, fillCardsArray } from './cardActions.js';
-import cards from '../data/flashcards.json'; //To be replaced with a function that ask backend to provide app with this data, i.e. getFlashcards();
 
 const mapStateToProps = state => ({
     cards: state.cardsReducer
@@ -23,10 +22,25 @@ class Test extends Component {
             index: 0,
             isRunning: false
         }
-        this.prepareFlashcards();
+        this.getFlashcards()
+            .then(result => this.prepareFlashcards(result));
     }
 
-    fillFirstBox = () => {
+    getFlashcards = async () => {
+        const response = await fetch('/api/flashcards');
+        const body = await response.json();
+        if (response.status !== 200) throw Error(body.message);
+        return body;
+    };
+
+    prepareFlashcards = (cards) => { //This can be moved to backend later
+        let preparedCards = cards;
+        preparedCards = this.fillFirstBox(preparedCards);
+        preparedCards.sort((a, b) => b.box - a.box);
+        this.props.fillCardsArray(preparedCards);
+    }
+
+    fillFirstBox = (cards) => {
         let firstBoxLength = cards.filter(elem => elem.box === 1).length;
         return cards.map(card => {
             if (card.box === 0 && firstBoxLength < 10) {
@@ -35,13 +49,6 @@ class Test extends Component {
             }
             return card;
         });
-    }
-    
-    prepareFlashcards = () => { //This can be moved to backend later
-        let preparedCards = cards;
-        preparedCards = this.fillFirstBox(preparedCards);
-        preparedCards.sort((a, b) => b.box - a.box);
-        this.props.fillCardsArray(preparedCards);
     }
 
     increaseIndex = () => {
