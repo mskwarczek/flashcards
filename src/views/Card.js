@@ -39,4 +39,4 @@ Card.propTypes = {
     card: PropTypes.object.isRequired,
     pushForward: PropTypes.func.isRequired,
     pushBackward: PropTypes.func.isRequired
-};
+}

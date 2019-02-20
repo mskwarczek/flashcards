@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import Card from './Card';
-import { pushForward, pushBackward, fillCardsArray } from './cardActions.js';
-import { setUserData } from './userActions.js';
+import { pushForward, pushBackward, fillCardsArray } from '../common/reducers/cardActions.js';
+import { setUserData } from '../common/reducers/userActions.js';
 
 const mapStateToProps = state => ({
     cards: state.cardsReducer,
@@ -23,18 +24,24 @@ class Test extends Component {
         super(props);
         this.state = {
             index: 0,
-            isRunning: false,
+            running: 0, // 0 - test not started, 1 - test running, 2 - test finished, -1 user not logged in
             firstBoxBaseSize: 10
         }
-        this.getData()
-            .then(result => this.prepareFlashcards(result));
     }
 
-    getData = async () => { // Later on I should create user login page so it can all be done in different component. This component could just use data from the store
+    componentDidMount() {
+        if (!this.props.user.flashcards) {
+            this.setState({running: -1});
+            console.log(this.state);
+        } else {
+        this.getData()
+            .then(result => this.prepareFlashcards(result));
+        }
+    }
+
+    getData = async () => {
         const cards = await this.apiCall('/flashcards');
-        const user = await this.apiCall('/user');
-        this.props.setUserData(user);
-        return {user: user, cards: cards}
+        return cards;
     }
 
     apiCall = async (endpoint) => {
@@ -44,18 +51,19 @@ class Test extends Component {
         return body;
     }
 
-    prepareFlashcards = ({user, cards}) => {
-        cards = this.combineUserWithCards(user, cards);
+    prepareFlashcards = (cards) => {
+        cards = this.combineUserWithCards(cards);
         cards = this.fillFirstBox(cards);
         cards.sort((a, b) => b.box - a.box);
         this.props.fillCardsArray(cards);
         this.setState({index: cards.filter(elem => elem.box >= 6).length});
+        return true;
     }
 
-    combineUserWithCards = (user, cards) => {
+    combineUserWithCards = (cards) => {
         return cards.map(card => {
             let newCard = { ...card, box: 0 };
-            user.flashcards.forEach((box, index) => {
+            this.props.user.flashcards.forEach((box, index) => {
                 if (box.some(id => id === card.id)) {
                     newCard = { ...card, box: index };
                 }
@@ -93,11 +101,8 @@ class Test extends Component {
             });
         else {
             this.updateUserData();
-            this.getData()//Everything from this point won't be necessary if I force app to navigate to new page here, i.e. to /summary.
-                .then(result => this.prepareFlashcards(result));
             this.setState({
-                isRunning: false,
-                index: 0
+                running: 2,
             });
         }
     }
@@ -123,17 +128,28 @@ class Test extends Component {
     }
 
     render() {
-        return (
-            <div className='test'>
-            { this.state.isRunning
-                ? <Card 
+        switch(this.state.running) {
+            case 0: return (
+                <div className='test'>
+                    <div className='button button--big' onClick={() => this.setState({running: 1})}>Rozpocznij test</div>
+                </div>);
+            case 1: return (
+                <div className='test'>
+                    <Card 
                     card={this.props.cards[this.state.index]}
                     pushForward={this.pushForward}
                     pushBackward={this.pushBackward}/>
-                : <div className='button button--big' onClick={() => this.setState({isRunning: true})}>Start</div>
-            }
-            </div>
-        );
+                </div>);
+            case 2: return (
+                <div className='test'>
+                    <NavLink to='/summary'><div className='button button--big'>Zakończ test</div></NavLink>
+                </div>);
+            case -1: return (
+                <div className='test'>
+                    <NavLink to='/'><div className='button button--big'>Musisz się zalogować</div></NavLink>
+                </div>)
+            default: return null;
+        }
     }
 }
 
@@ -142,7 +158,8 @@ Test.propTypes = {
     user: PropTypes.object.isRequired,
     pushForward: PropTypes.func.isRequired,
     pushBackward: PropTypes.func.isRequired,
-    fillCardsArray: PropTypes.func.isRequired
-};
+    fillCardsArray: PropTypes.func.isRequired,
+    setUserData: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Test);

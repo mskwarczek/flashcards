@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import cardsReducer from '../views/cardsReducer';
-import userReducer from '../views/userReducer';
+import cardsReducer from './cardsReducer';
+import userReducer from './userReducer';
 
 const reducers = combineReducers({
     cardsReducer,
