@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Card from './Card';
+import { apiCall } from '../common/tools';
 
 export default class Practice extends Component {
     constructor(props) {
@@ -18,15 +19,8 @@ export default class Practice extends Component {
     }
 
     getData = async () => {
-        const cards = await this.apiCall('/flashcards');
+        const cards = await apiCall('/flashcards');
         return cards;
-    }
-
-    apiCall = async (endpoint) => {
-        const response = await fetch('/api' + endpoint);
-        const body = await response.json();
-        if (response.status !== 200) throw Error(body.message);
-        return body;
     }
 
     nextCard = () => {

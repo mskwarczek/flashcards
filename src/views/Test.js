@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import Card from './Card';
+import ProgressBar from './ProgressBar';
+import { apiCall } from '../common/tools';
 import { pushForward, pushBackward, fillCardsArray } from '../common/reducers/cardActions.js';
 import { setUserData } from '../common/reducers/userActions.js';
 
@@ -39,15 +41,8 @@ class Test extends Component {
     }
 
     getData = async () => {
-        const cards = await this.apiCall('/flashcards');
+        const cards = await apiCall('/flashcards');
         return cards;
-    }
-
-    apiCall = async (endpoint) => {
-        const response = await fetch('/api' + endpoint);
-        const body = await response.json();
-        if (response.status !== 200) throw Error(body.message);
-        return body;
     }
 
     prepareFlashcards = (cards) => {
@@ -136,10 +131,13 @@ class Test extends Component {
                 <div className='test'>
                     <h2>Test</h2>
                     <Card 
-                    card={this.props.cards[this.state.index]}
-                    test={true}
-                    pushForward={this.pushForward}
-                    pushBackward={this.pushBackward}/>
+                        card={this.props.cards[this.state.index]}
+                        test={true}
+                        pushForward={this.pushForward}
+                        pushBackward={this.pushBackward} />
+                    <ProgressBar
+                        cards={this.props.cards}
+                        current={this.state.index} />
                     <NavLink to='/home'><div className='button'>Przerwij</div></NavLink>
                 </div>);
             case 2: return (
