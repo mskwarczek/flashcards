@@ -32,7 +32,6 @@ class Test extends Component {
     componentDidMount() {
         if (!this.props.user.flashcards) {
             this.setState({running: -1});
-            console.log(this.state);
         } else {
         this.getData()
             .then(result => this.prepareFlashcards(result));
@@ -56,7 +55,7 @@ class Test extends Component {
         cards = this.fillFirstBox(cards);
         cards.sort((a, b) => b.box - a.box);
         this.props.fillCardsArray(cards);
-        this.setState({index: cards.filter(elem => elem.box >= 6).length});
+        this.setState({running: 1, index: cards.filter(elem => elem.box >= 6).length});
         return true;
     }
 
@@ -131,14 +130,17 @@ class Test extends Component {
         switch(this.state.running) {
             case 0: return (
                 <div className='test'>
-                    <div className='button button--big' onClick={() => this.setState({running: 1})}>Rozpocznij test</div>
+                    <div>Trwa pobieranie danych z serwera...</div>
                 </div>);
             case 1: return (
                 <div className='test'>
+                    <h2>Test</h2>
                     <Card 
                     card={this.props.cards[this.state.index]}
+                    test={true}
                     pushForward={this.pushForward}
                     pushBackward={this.pushBackward}/>
+                    <NavLink to='/home'><div className='button'>Przerwij</div></NavLink>
                 </div>);
             case 2: return (
                 <div className='test'>

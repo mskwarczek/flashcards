@@ -32,6 +32,9 @@ class Login extends Component {
             <div>
                 <NavLink to='/home'><div className='button button--big' onClick={this.login}>Zaloguj się*</div></NavLink>
                 <p>* Używając danych przygotowanych na potrzeby testowania aplikacji</p>
+                <br />
+                <NavLink to='/home'><div className='button'>Bez logowania*</div></NavLink>
+                <p>* Dostępna tylko opcja treningu</p>
             </div>
         );
     }

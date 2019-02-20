@@ -20,16 +20,24 @@ export default function Card(props) {
             <div className='card__back '>
                 <p className='card__title'>{props.card.front}</p>
                 <p className='card__description'>{props.card.back}</p>
-                <div className='card__button-box'>
-                    <div className='button' onClick={() => {
-                        flipCard();
-                        props.pushBackward(props.card.id)
-                    }}>Nie umiem</div>
-                    <div className='button' onClick={() => {
-                        flipCard();
-                        props.pushForward(props.card.id)
-                    }}>Umiem!</div>
-                </div>
+                {props.test
+                    ? <div className='card__button-box'>
+                        <div className='button' onClick={() => {
+                            flipCard();
+                            props.pushBackward(props.card.id)
+                        }}>Nie umiem</div>
+                        <div className='button' onClick={() => {
+                            flipCard();
+                            props.pushForward(props.card.id)
+                        }}>Umiem!</div>
+                    </div>
+                    : <div className='card__button-box'>
+                        <div className='button' onClick={() => {
+                            flipCard();
+                            props.nextCard()
+                        }}>Dalej</div>
+                    </div>
+                }
             </div>
         </div>
     );
@@ -37,6 +45,8 @@ export default function Card(props) {
 
 Card.propTypes = {
     card: PropTypes.object.isRequired,
-    pushForward: PropTypes.func.isRequired,
-    pushBackward: PropTypes.func.isRequired
+    pushForward: PropTypes.func,
+    pushBackward: PropTypes.func,
+    nextCard: PropTypes.func,
+    test: PropTypes.bool
 }

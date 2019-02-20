@@ -6,6 +6,7 @@ export default function Home(props) {
     return (
         <div className='home'>
             <NavLink to='/test'><div className='button button--big'>Test</div></NavLink>
+            <NavLink to='/practice'><div className='button button--big'>Trening</div></NavLink>
         </div>
     );
 }
