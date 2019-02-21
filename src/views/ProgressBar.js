@@ -24,7 +24,7 @@ export default function ProgressBar(props) {
                 <ProgressBarBox text={'I'} width={calculateWidth(1)} amount={calculateAmount(1)} type={'progress-bar__box'}/>
                 <div className='progress-bar__overall' style={{width: calculateOverall()}}></div>
             </div>
-            <ProgressBarBox text={'Nieznane'} amount={calculateAmount(6)} type={'edge-box'}/>
+            <ProgressBarBox text={'Nieznane'} amount={calculateAmount(0)} type={'edge-box'}/>
         </div>
     );
 }

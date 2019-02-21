@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import Card from './Card';
 import ProgressBar from './ProgressBar';
+import Summary from './Summary';
 import { apiCall } from '../common/tools';
 import { pushForward, pushBackward, fillCardsArray } from '../common/reducers/cardActions.js';
 import { setUserData } from '../common/reducers/userActions.js';
@@ -125,7 +126,7 @@ class Test extends Component {
         switch(this.state.running) {
             case 0: return (
                 <div className='test'>
-                    <div>Trwa pobieranie danych z serwera...</div>
+                    Trwa pobieranie danych z serwera...
                 </div>);
             case 1: return (
                 <div className='test'>
@@ -139,15 +140,15 @@ class Test extends Component {
                         cards={this.props.cards}
                         current={this.state.index} />
                     <NavLink to='/home'><div className='button'>Przerwij</div></NavLink>
+                    <p>Twoja sesja nie zostanie zapisana</p>
                 </div>);
             case 2: return (
-                <div className='test'>
-                    <NavLink to='/summary'><div className='button button--big'>Zakończ test</div></NavLink>
-                </div>);
+                <Summary
+                    afterTest={true} />);
             case -1: return (
                 <div className='test'>
                     <NavLink to='/'><div className='button button--big'>Musisz się zalogować</div></NavLink>
-                </div>)
+                </div>);
             default: return null;
         }
     }
