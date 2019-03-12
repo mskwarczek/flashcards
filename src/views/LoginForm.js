@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export default class LoginForm extends Component {
     constructor(props) {
@@ -18,15 +17,10 @@ export default class LoginForm extends Component {
         }
     }
 
-    handleSubmit = (event) => {
-        this.props.login();
-        event.preventDefault();
-    }
-
     render() {
         return(
             <div className='login-form'>
-                <form onSubmit={this.handleSubmit}>
+                <form action='/api/login' method='post'>
                     <label>Email:
                         <input 
                             type='email'
@@ -35,7 +29,7 @@ export default class LoginForm extends Component {
                             onChange={this.handleChange}
                             required />
                     </label><br />
-                    <label>Password:
+                    <label>Hasło:
                         <input
                             type='password'
                             name='password'
@@ -48,8 +42,4 @@ export default class LoginForm extends Component {
             </div>
         );
     }
-}
-
-LoginForm.propTypes = {
-    login: PropTypes.func.isRequired
 }

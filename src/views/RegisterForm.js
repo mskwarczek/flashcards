@@ -7,7 +7,8 @@ export default class RegisterForm extends Component {
             email: '',
             username: '',
             password: '',
-            repeatPassword: ''
+            repeatPassword: '',
+            isPasswordValid: true
         }
     }
 
@@ -21,14 +22,25 @@ export default class RegisterForm extends Component {
         }
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-    }
-
     render() {
         return(
             <div className='register-form'>
-                <form onSubmit={this.handleSubmit}>
+                {
+                    (this.props.history.location.search.search('missingFields') > -1)
+                        ? <p>Uzupełnij wszystkie pola!</p>
+                        : null
+                }
+                {
+                    (this.props.history.location.search.search('duplicateEmail') > -1)
+                        ? <p>Ten adres email jest już zajęty!</p>
+                        : null
+                }
+                {
+                    (this.state.password !== this.state.repeatPassword || this.props.history.location.search.search('badPassword') > -1)
+                        ? <p>Hasło i jego powtórzenie muszą być identyczne</p>
+                        : null
+                }
+                <form action='/api/register' method='post'>
                     <label>Email:
                         <input 
                             type='email'
@@ -37,7 +49,7 @@ export default class RegisterForm extends Component {
                             onChange={this.handleChange}
                             required />
                     </label><br />
-                    <label>Name:
+                    <label>Nazwa użytkownika:
                         <input 
                             type='text'
                             name='username'
@@ -45,7 +57,7 @@ export default class RegisterForm extends Component {
                             onChange={this.handleChange}
                             required />
                     </label><br />
-                    <label>Password:
+                    <label>Hasło:
                         <input
                             type='password'
                             name='password'
@@ -53,7 +65,7 @@ export default class RegisterForm extends Component {
                             onChange={this.handleChange}
                             required />
                     </label><br />
-                    <label>Repeat password:
+                    <label>Powtórz hasło:
                         <input 
                             type='password'
                             name='repeatPassword'

@@ -27,7 +27,7 @@ class Login extends Component {
     render() {
         return(
             <div className='login'>
-                <LoginForm login={this.login} />
+                <LoginForm />
                 <NavLink to='/home'><div className='button button--big' onClick={this.login}>Zaloguj się*</div></NavLink>
                 <p>* Używając danych przygotowanych na potrzeby testowania aplikacji</p>
                 <br />
