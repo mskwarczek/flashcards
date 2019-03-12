@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-import { setUserData } from '../common/reducers/userActions.js';
+import LoginForm from './LoginForm';
+import { setUserData } from '../common/reducers/userActions';
 import { apiCall } from '../common/tools';
 
 const mapStateToProps = state => ({
@@ -19,11 +21,13 @@ class Login extends Component {
     login = () => {
         apiCall('/user')
             .then(user => this.props.setUserData(user));
+        this.props.history.push('/home');
     }
 
     render() {
         return(
             <div className='login'>
+                <LoginForm login={this.login} />
                 <NavLink to='/home'><div className='button button--big' onClick={this.login}>Zaloguj się*</div></NavLink>
                 <p>* Używając danych przygotowanych na potrzeby testowania aplikacji</p>
                 <br />
@@ -39,4 +43,4 @@ Login.propTypes = {
     setUserData: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
