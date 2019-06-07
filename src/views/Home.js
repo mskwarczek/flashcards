@@ -10,4 +10,4 @@ export default function Home(props) {
             <NavLink to='/summary'><div className='button button--big'>Podsumowanie</div></NavLink>
         </div>
     );
-}
+};

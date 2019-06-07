@@ -29,22 +29,22 @@ class Test extends Component {
             index: 0,
             running: 0, // 0 - test not started, 1 - test running, 2 - test finished, -1 user not logged in
             firstBoxBaseSize: 10
-        }
-    }
+        };
+    };
 
     componentDidMount() {
-        if (!this.props.user.flashcards) {
+        if (!this.props.user.id) {
             this.setState({running: -1});
         } else {
         this.getData()
             .then(result => this.prepareFlashcards(result));
-        }
-    }
+        };
+    };
 
     getData = async () => {
         const cards = await apiCall('/flashcards');
         return cards;
-    }
+    };
 
     prepareFlashcards = (cards) => {
         cards = this.combineUserWithCards(cards);
@@ -53,7 +53,7 @@ class Test extends Component {
         this.props.fillCardsArray(cards);
         this.setState({running: 1, index: cards.filter(elem => elem.box >= 6).length});
         return true;
-    }
+    };
 
     combineUserWithCards = (cards) => {
         return cards.map(card => {
@@ -61,11 +61,11 @@ class Test extends Component {
             this.props.user.flashcards.forEach((box, index) => {
                 if (box.some(id => id === card.id)) {
                     newCard = { ...card, box: index };
-                }
+                };
             });
             return newCard;
         });
-    }
+    };
 
     fillFirstBox = (cards) => {
         let firstBoxLength = cards.filter(elem => elem.box === 1).length;
@@ -73,20 +73,20 @@ class Test extends Component {
             if (card.box === 0 && firstBoxLength < this.state.firstBoxBaseSize) {
                 firstBoxLength++;
                 return { ...card, box: 1 };
-            }
+            };
             return card;
         });
-    }
+    };
 
     pushForward = (id) => {
         this.props.pushForward(id);
         this.increaseIndex();
-    }
+    };
 
     pushBackward = (id) => {
         this.props.pushBackward(id);
         this.increaseIndex();
-    }
+    };
 
     increaseIndex = () => {
         const newIndex = this.state.index + 1;
@@ -99,18 +99,18 @@ class Test extends Component {
             this.setState({
                 running: 2,
             });
-        }
-    }
+        };
+    };
 
     sendUserData = async (newData) => {
-        return await fetch('/api/user', {
+        fetch('/api/updateUser', {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify(newData),
         });
-    }
+    };
 
     updateUserData = () => {
         let newData = [[],[],[],[],[],[],[]];
@@ -119,8 +119,8 @@ class Test extends Component {
         });
         newData = { ...this.props.user, flashcards: newData }
         this.props.setUserData(newData);
-        this.sendUserData(newData);
-    }
+        this.sendUserData({ email: newData.email, flashcards: newData.flashcards });
+    };
 
     render() {
         switch(this.state.running) {
@@ -150,9 +150,9 @@ class Test extends Component {
                     <NavLink to='/'><div className='button button--big'>Musisz się zalogować</div></NavLink>
                 </div>);
             default: return null;
-        }
-    }
-}
+        };
+    };
+};
 
 Test.propTypes = {
     cards: PropTypes.array.isRequired,
@@ -161,6 +161,6 @@ Test.propTypes = {
     pushBackward: PropTypes.func.isRequired,
     fillCardsArray: PropTypes.func.isRequired,
     setUserData: PropTypes.func.isRequired
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Test);

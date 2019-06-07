@@ -9,7 +9,7 @@ export default function SummaryBox(props) {
             <p>Fiszki: {props.boxAmount}</p>
         </div>
     );
-}
+};
 
 SummaryBox.propTypes = {
     boxNumber: PropTypes.oneOfType([
@@ -17,4 +17,4 @@ SummaryBox.propTypes = {
         PropTypes.number
     ]),
     boxAmount: PropTypes.number.isRequired
-}
+};

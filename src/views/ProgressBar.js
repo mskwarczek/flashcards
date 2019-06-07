@@ -6,13 +6,13 @@ import ProgressBarBox from './ProgressBarBox';
 export default function ProgressBar(props) {
     const calculateWidth = (box) => {
         return ((props.cards.filter(card => card.box === box).length) / props.cards.filter(card => card.box > 0 && card.box < 6).length) * 100 + '%';
-    }
+    };
     const calculateAmount = (box) => {
         return props.cards.filter(card => card.box === box).length;
-    }
+    };
     const calculateOverall = () => {
         return ((props.current - props.cards.filter(card => card.box >= 6).length) / props.cards.filter(card => card.box > 0 && card.box < 6).length) * 100 + '%';
-    }
+    };
     return (
         <div className='progress-bar-container'>
             <ProgressBarBox text={'Znane'} amount={calculateAmount(6)} type={'edge-box'}/>
@@ -27,9 +27,9 @@ export default function ProgressBar(props) {
             <ProgressBarBox text={'Nieznane'} amount={calculateAmount(0)} type={'edge-box'}/>
         </div>
     );
-}
+};
 
 ProgressBar.propTypes = {
     cards: PropTypes.array.isRequired,
     current: PropTypes.number.isRequired
-}
+};

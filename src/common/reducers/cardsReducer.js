@@ -10,7 +10,7 @@ const cardsReducer = (state = [], action) => {
                 if (card.id === action.payload.id) {
                     let newValue = card.box + 1;
                     return { ...card, box: newValue };
-                }
+                };
                 return card;
             });
         case PUSH_BACKWARD:
@@ -19,11 +19,10 @@ const cardsReducer = (state = [], action) => {
                     return { ...card, box: 1 };
                 return card;
             });
-        case FILL_CARDS_ARRAY: {
+        case FILL_CARDS_ARRAY:
             return action.payload.cardsArray;
-        }
         default: return state;
-    }
-}
+    };
+};
 
 export default cardsReducer;

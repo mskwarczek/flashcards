@@ -7,7 +7,7 @@ export default function Card(props) {
         const back = document.querySelector('.card__back');
         front.classList.toggle('flip-front');
         back.classList.toggle('flip-back');
-    }
+    };
     return (
         <div className='card'>
             <div className='card__front'>
@@ -41,7 +41,7 @@ export default function Card(props) {
             </div>
         </div>
     );
-}
+};
 
 Card.propTypes = {
     card: PropTypes.object.isRequired,
@@ -49,4 +49,4 @@ Card.propTypes = {
     pushBackward: PropTypes.func,
     nextCard: PropTypes.func,
     test: PropTypes.bool
-}
+};

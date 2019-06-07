@@ -14,7 +14,7 @@ function Summary(props) {
     let boxes = [];
     for (let i = 1; i < 6; i++) {
         boxes.push(<SummaryBox key={i} boxNumber={i} boxAmount={props.box[i].length} />)
-    }
+    };
     return (
         <div className='summary'>
             <h2>Podsumowanie</h2><br />
@@ -33,15 +33,15 @@ function Summary(props) {
             <NavLink to='/home'><div className='button button--big'>Kontynuuj</div></NavLink>
         </div>
     );
-}
+};
 
 Summary.propTypes = {
     box: PropTypes.array,
     afterTest: PropTypes.bool
-}
+};
 
 Summary.defaultProps = {
     afterTest: false
-}
+};
 
 export default connect(mapStateToProps)(Summary);

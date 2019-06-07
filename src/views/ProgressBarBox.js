@@ -8,11 +8,11 @@ export default function ProgressBarBox(props) {
             <p className='progress-bar__amount'>{props.amount}</p>
         </div>
     );
-}
+};
 
 ProgressBarBox.propTypes = {
     text: PropTypes.string.isRequired,
     amount: PropTypes.number.isRequired,
     width: PropTypes.string,
     type: PropTypes.string
-}
+};

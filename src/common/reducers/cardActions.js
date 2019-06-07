@@ -8,8 +8,8 @@ export function fillCardsArray(cardsArray) {
         payload: {
             cardsArray
         }
-    }
-}
+    };
+};
 
 export function pushForward(id) {
     return {
@@ -17,8 +17,8 @@ export function pushForward(id) {
         payload: {
             id
         }
-    }
-}
+    };
+};
 
 export function pushBackward(id) {
     return {
@@ -26,5 +26,5 @@ export function pushBackward(id) {
         payload: {
             id
         }
-    }
-}
+    };
+};

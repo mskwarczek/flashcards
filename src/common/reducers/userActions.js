@@ -6,5 +6,5 @@ export function setUserData(user) {
         payload: {
             user
         }
-    }
-}
+    };
+};

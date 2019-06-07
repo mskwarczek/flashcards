@@ -7,10 +7,9 @@ export default class RegisterForm extends Component {
             email: '',
             username: '',
             password: '',
-            repeatPassword: '',
-            isPasswordValid: true
-        }
-    }
+            repeatPassword: ''
+        };
+    };
 
     handleChange = (event) => {
         switch (event.target.name) {
@@ -19,8 +18,8 @@ export default class RegisterForm extends Component {
             case 'password': this.setState({ password: event.target.value }); break;
             case 'repeatPassword': this.setState({ repeatPassword: event.target.value }); break;
             default: break;
-        }
-    }
+        };
+    };
 
     render() {
         return(
@@ -77,5 +76,5 @@ export default class RegisterForm extends Component {
                 </form>
             </div>
         );
-    }
-}
+    };
+};

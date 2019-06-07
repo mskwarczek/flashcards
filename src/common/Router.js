@@ -18,5 +18,5 @@ export default function Router() {
             <Route exact path='/practice' component={Practice} />
             <Route exact path='/summary' component={Summary} />
         </Switch>
-    )
-}
+    );
+};

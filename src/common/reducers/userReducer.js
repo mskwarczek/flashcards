@@ -8,7 +8,7 @@ const userReducer = (state = {}, action) => {
         case SET_USER_DATA:
             return action.payload.user;
         default: return state;
-    }
-}
+    };
+};
 
 export default userReducer;
