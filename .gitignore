@@ -1,5 +1,6 @@
 # key / url / password files
 dburl.json
+secret_key.json
 
 # dependencies
 /node_modules

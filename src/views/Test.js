@@ -33,12 +33,15 @@ class Test extends Component {
     };
 
     componentDidMount() {
-        if (!this.props.user.id) {
-            this.setState({running: -1});
-        } else {
-        this.getData()
-            .then(result => this.prepareFlashcards(result));
-        };
+        fetch('/api/userStatus')
+            .then (res => {
+                return res.json();
+            })
+            .then(res => {
+                res === 'SUCCESS'
+                    ? this.getData().then(result => this.prepareFlashcards(result))
+                    : this.setState({running: -1});
+            });
     };
 
     getData = async () => {

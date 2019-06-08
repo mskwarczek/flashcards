@@ -4,7 +4,9 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.3",
     "express": "^4.16.4",
+    "express-session": "^1.16.1",
     "mongodb": "^3.1.13",
     "mongoose": "^5.4.19",
     "node-sass": "^4.11.0",
