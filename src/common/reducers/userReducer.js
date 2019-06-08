@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
 
-import { SET_USER_DATA } from './userActions';
+import { SET_USER_DATA, CLEAR_USER_DATA } from './userActions';
 
 const initialState = {
     username: null,
@@ -14,6 +14,8 @@ const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
             return action.payload.user;
+        case CLEAR_USER_DATA:
+            return initialState;
         default: return state;
     };
 };

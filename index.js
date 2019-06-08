@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const bcrypt = require('bcrypt');
 
 const DATABASEURL = require('./server/data/dburl.json');
 const SECRETKEY = require('./server/data/secret_key.json');
@@ -58,24 +59,32 @@ server.post('/api/register', (req, res) => {
             useCreateIndex: true,
             autoReconnect: true
         });
-        let newUser = new User({
-            email: req.body.email,
-            username: req.body.username,
-            password: req.body.password,
-            flashcards: [],
-        });
-        newUser.save((err, user) => {
-            if (err && err.code === 11000) {
-                res.redirect('/register?duplicateEmail');
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+            if (err) {
+                console.log(err);
             }
-            else res.redirect('/');
+            else {
+                let newUser = new User({
+                    email: req.body.email,
+                    username: req.body.username,
+                    password: hash,
+                    flashcards: [],
+                });
+                console.log(newUser);
+                newUser.save((err, user) => {
+                    if (err && err.code === 11000) {
+                        res.redirect('/register?duplicateEmail');
+                    }
+                    else res.redirect('/');
+                });
+            };
         });
     };
 });
 
 server.post('/api/login', (req, res) => {
     if (!req.body.email || !req.body.password)
-        res.sendStatus(403);
+        res.sendStatus(401);
     else {
         mongoose.connect(DATABASEURL, {
             useNewUrlParser: true,
@@ -87,23 +96,30 @@ server.post('/api/login', (req, res) => {
                 if (!user) {
                     throw new Error('badEmail');
                 }
-                else if (user.password === req.body.password) {
-                    req.session.userId = user._id;
-                    user = {
-                        username: user.username,
-                        email: user.email,
-                        flashcards: user.flashcards,
-                        isLoggedIn: true
-                    };
-                    res.send(JSON.stringify(user));
-                }
                 else {
-                    throw new Error('badPassword');
-                }
+                    bcrypt.compare(req.body.password, user.password, (err, result) => {
+                        if (err) {
+                            throw new Error('bcryptError');
+                        }
+                        else if (result === true) {
+                            req.session.userId = user._id;
+                            user = {
+                                username: user.username,
+                                email: user.email,
+                                flashcards: user.flashcards,
+                                isLoggedIn: true
+                            };
+                            res.send(JSON.stringify(user));
+                        }
+                        else {
+                            throw new Error('badPassword');
+                        };
+                    });
+                };
             })
             .catch(error => {
                 console.log(error);
-                res.sendStatus(403);
+                res.sendStatus(401);
             });
     };
 });

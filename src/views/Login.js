@@ -61,7 +61,7 @@ class Login extends Component {
             <div className='login'>
                 <div className='login-form'>
                     {
-                        (this.state.error === 'Forbidden')
+                        (this.state.error === 'Unauthorized')
                             ? <p>Błąd logowania.</p>
                             : null
                     }

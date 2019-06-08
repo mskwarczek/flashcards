@@ -1,6 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { clearUserData } from '../common/reducers/userActions';
+
+const mapStateToProps = state => ({
+    user: state.userReducer
+});
+
+const mapDispatchToProps = dispatch => ({
+    clearUserData: () => dispatch(clearUserData())
+});
 
 const Home = (props) => {
 
@@ -8,14 +19,15 @@ const Home = (props) => {
         fetch('/api/logout', {
             method: 'POST'
         })
-        .then (res => res.json())
-        .then(res => {
-            if (res !== 'ERROR') {
-                props.history.push('/')
-            } else {
-                console.log(res);
-            };
-        });
+            .then(res => res.json())
+            .then(res => {
+                if (res !== 'ERROR') {
+                    props.clearUserData();
+                    props.history.push('/');
+                } else {
+                    console.log(res);
+                };
+            });
     };
 
     return (
@@ -28,4 +40,4 @@ const Home = (props) => {
     );
 };
 
-export default withRouter(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
