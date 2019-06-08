@@ -27,14 +27,19 @@ server.use(session({
     }
 }));
 
-server.get('/api/userStatus', (req, res) => {
+const checkLogin = (req, res, next) => {
     if (!req.session.userId) {
-        res.json("FAILURE");
+        res.json("ERROR");
     }
     else {
-        res.json("SUCCESS");
+        mongoose.connect(DATABASEURL, {
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            autoReconnect: true
+        });
+        next();
     };
-});
+};
 
 server.get('/api/flashcards', (req, res) => {
     res.sendFile(path.join(__dirname, 'server/data/flashcards.json'));
@@ -57,7 +62,7 @@ server.post('/api/register', (req, res) => {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
-            flashcards: []
+            flashcards: [],
         });
         newUser.save((err, user) => {
             if (err && err.code === 11000) {
@@ -83,13 +88,13 @@ server.post('/api/login', (req, res) => {
                     throw new Error('badEmail');
                 }
                 else if (user.password === req.body.password) {
+                    req.session.userId = user._id;
                     user = {
-                        id: user._id,
                         username: user.username,
                         email: user.email,
-                        flashcards: user.flashcards
+                        flashcards: user.flashcards,
+                        isLoggedIn: true
                     };
-                    req.session.userId = user.id;
                     res.send(JSON.stringify(user));
                 }
                 else {
@@ -103,13 +108,8 @@ server.post('/api/login', (req, res) => {
     };
 });
 
-server.put('/api/updateUser', (req, res) => {
-    mongoose.connect(DATABASEURL, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        autoReconnect: true
-    });
-    User.updateOne({ email: req.body.email }, { flashcards: req.body.flashcards }, (error, result) => {
+server.put('/api/userUpdate', checkLogin, (req, res) => {
+    User.updateOne({ _id: req.session.userId }, { flashcards: req.body.flashcards }, (error, result) => {
         if (error) {
             console.log(error);
             res.send(error);
@@ -119,12 +119,35 @@ server.put('/api/updateUser', (req, res) => {
     });
 });
 
+server.get('/api/user', checkLogin, (req, res) => {
+    User.findOne({ _id: req.session.userId })
+        .then(user => {
+            if (!user) {
+                throw new Error('noUserInDB');
+            }
+            else {
+                user = {
+                    username: user.username,
+                    email: user.email,
+                    flashcards: user.flashcards,
+                    isLoggedIn: true
+                };
+                res.send(JSON.stringify(user));
+            };
+        })
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(403);
+        });
+});
+
 server.post('/api/logout', (req, res) => {
     req.session.destroy(error => {
         if (error) {
-            res.send(error);
+            res.json("ERROR");
         } else {
             res.clearCookie('session_id');
+            res.json("OK");
         };
     });
 });

@@ -33,15 +33,20 @@ class Test extends Component {
     };
 
     componentDidMount() {
-        fetch('/api/userStatus')
-            .then (res => {
-                return res.json();
-            })
-            .then(res => {
-                res === 'SUCCESS'
-                    ? this.getData().then(result => this.prepareFlashcards(result))
-                    : this.setState({running: -1});
+        if (this.props.user.isLoggedIn !== true) {
+            fetch('/api/user')
+                .then (res => res.json())
+                .then(res => {
+                    if (res === 'ERROR') {
+                        this.setState({running: -1})
+                    } else {
+                        this.props.setUserData(res);
+                        this.getData().then(result => this.prepareFlashcards(result));
+                    };
             });
+        } else {
+            this.getData().then(result => this.prepareFlashcards(result));
+        };
     };
 
     getData = async () => {
@@ -106,7 +111,7 @@ class Test extends Component {
     };
 
     sendUserData = async (newData) => {
-        fetch('/api/updateUser', {
+        fetch('/api/userUpdate', {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -122,7 +127,7 @@ class Test extends Component {
         });
         newData = { ...this.props.user, flashcards: newData }
         this.props.setUserData(newData);
-        this.sendUserData({ email: newData.email, flashcards: newData.flashcards });
+        this.sendUserData({ flashcards: newData.flashcards });
     };
 
     render() {
