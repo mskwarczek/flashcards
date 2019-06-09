@@ -28,6 +28,9 @@ class Header extends Component {
                     if (res !== 'ERROR') {
                         this.props.setUserData(res);
                     };
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
         };
     };
@@ -44,6 +47,9 @@ class Header extends Component {
                 } else {
                     console.log(res);
                 };
+            })
+            .catch((error) => {
+                console.log(error);
             });
     };
 
@@ -68,9 +74,7 @@ class Header extends Component {
                         }
                     </div>
                 }
-                <div>
-                    <h1>Flashcards</h1>
-                </div>
+                <h1>Flashcards</h1>
             </div>
         );
     };

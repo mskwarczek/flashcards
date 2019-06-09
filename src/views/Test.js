@@ -42,8 +42,11 @@ class Test extends Component {
                     } else {
                         this.props.setUserData(res);
                         this.getData().then(result => this.prepareFlashcards(result));
-                    };
-            });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         } else {
             this.getData().then(result => this.prepareFlashcards(result));
         };
@@ -59,7 +62,7 @@ class Test extends Component {
         cards = this.fillFirstBox(cards);
         cards.sort((a, b) => b.box - a.box);
         this.props.fillCardsArray(cards);
-        this.setState({running: 1, index: cards.filter(elem => elem.box >= 6).length});
+        this.setState({ running: 1, index: cards.filter(elem => elem.box >= 6).length });
         return true;
     };
 
@@ -110,7 +113,7 @@ class Test extends Component {
         };
     };
 
-    sendUserData = async (newData) => {
+    sendUserData = (newData) => {
         fetch('/api/userUpdate', {
             method: 'PUT',
             headers: {
@@ -140,19 +143,19 @@ class Test extends Component {
                 <div className='test'>
                     <h2>Test</h2>
                     <Card 
-                        card={this.props.cards[this.state.index]}
-                        test={true}
-                        pushForward={this.pushForward}
-                        pushBackward={this.pushBackward} />
+                        card={ this.props.cards[this.state.index] }
+                        test={ true }
+                        pushForward={ this.pushForward }
+                        pushBackward={ this.pushBackward } />
                     <ProgressBar
-                        cards={this.props.cards}
-                        current={this.state.index} />
+                        cards={ this.props.cards }
+                        current={ this.state.index } />
                     <NavLink to='/home' className='button'>Przerwij</NavLink>
                     <p>Twoja sesja nie zostanie zapisana</p>
                 </div>);
             case 2: return (
                 <Summary
-                    afterTest={true} />);
+                    afterTest={ true } />);
             case -1: return (
                 <div className='test'>
                     <NavLink to='/' className='button button--big'>Musisz się zalogować</NavLink>

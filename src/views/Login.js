@@ -25,9 +25,10 @@ class Login extends Component {
     };
 
     handleChange = (event) => {
-        switch (event.target.name) {
-            case 'email': this.setState({ email: event.target.value }); break;
-            case 'password': this.setState({ password: event.target.value }); break;
+        const { name, value } = event.target;
+        switch (name) {
+            case 'email': this.setState({ email: value }); break;
+            case 'password': this.setState({ password: value }); break;
             default: break;
         };
     };
@@ -51,45 +52,53 @@ class Login extends Component {
             .then(res => this.props.setUserData(res))
             .then(() => this.props.history.push('/home'))
             .catch(error => {
-                console.log(error.message);
+                console.log(error);
                 this.setState({ error: error.message });
             });
     };
 
     render() {
+        const { email, password, error } = this.state;
         return (
             <div className='login'>
-                <div className='login-form'>
-                    {
-                        (this.state.error === 'Unauthorized')
+                <h3>Fiszki do nauki języków, pojęć, dat i innych informacji, które trzeba po prostu zapaiętać :)</h3>
+                <div className='login__form'>
+                    { error === 'Unauthorized'
                             ? <p>Błąd logowania.</p>
                             : null
                     }
                     <form>
-                        <label>Email:
-                        <input
-                                type='email'
-                                name='email'
-                                value={this.state.email}
-                                onChange={this.handleChange}
-                                required />
-                        </label><br />
-                        <label>Hasło:
-                        <input
-                                type='password'
-                                name='password'
-                                value={this.state.password}
-                                onChange={this.handleChange}
-                                required />
-                        </label><br /><br />
-                        <input className='button' type='button' value='Zaloguj' onClick={this.login} />
+                        <input className='form-input'
+                            type='email'
+                            name='email'
+                            placeholder='EMAIL'
+                            value={ email }
+                            onChange={ this.handleChange }
+                            required />
+                        <input className='form-input'
+                            type='password'
+                            name='password'
+                            placeholder='PASSWORD'
+                            value={ password }
+                            onChange={ this.handleChange }
+                            required />
+                        <input className='button button--important' type='button' value='Zaloguj' onClick={ this.login } />
                     </form>
                 </div>
-                <br />
-                <NavLink to='/register' className='button'>Rejestracja</NavLink>
-                <br />
-                <NavLink to='/home' className='button'>Bez logowania*</NavLink>
-                <p>* Dostępna tylko opcja treningu</p>
+                <div className='login__flex-container'>
+                    <div>
+                        <p>Nie masz konta? Zajmie to tylko chwilkę i wymaga jedynie podania nazwy użytkownika, e-maila i hasła.</p>
+                        <p className='note'>Uwaga: To projekt do doskonalenia umiejętności programistycznych autora, możesz podać wymyśony adres e-mail. Nie będą na niego wysyłane żadne wiadomości.</p>
+                        <NavLink to='/register' className='button'>Rejestracja</NavLink>
+                    </div>
+                    <div>
+                        <p>Przetestuj aplikację bez rejestracji i logowania. Dostępna będzie jedynie funkcja treningu.</p>
+                        <NavLink to='/home' className='button'>Bez logowania</NavLink>
+                    </div>
+                </div>
+                <div>
+                    <p>Pierwszy raz spotykasz się z pojęciem fiszek (ang. flashcards)? Dowiedz się więcej! <NavLink to='/about' className='inline-link'>O fiszkach</NavLink></p>
+                </div>
             </div>
         );
     };

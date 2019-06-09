@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function SummaryBox(props) {
+const SummaryBox = (props) => {
 
     return (
         <div className='summary-box__elem'>
-            <h3>{props.boxNumber}</h3>
-            <p>Fiszki: {props.boxAmount}</p>
+            <h3>{ props.boxNumber }</h3>
+            <p>Fiszki: { props.boxAmount }</p>
         </div>
     );
 };
@@ -18,3 +18,5 @@ SummaryBox.propTypes = {
     ]),
     boxAmount: PropTypes.number.isRequired
 };
+
+export default SummaryBox;

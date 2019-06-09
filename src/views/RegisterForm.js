@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default class RegisterForm extends Component {
+class RegisterForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,69 +13,70 @@ export default class RegisterForm extends Component {
     };
 
     handleChange = (event) => {
-        switch (event.target.name) {
-            case 'email': this.setState({ email: event.target.value }); break;
-            case 'username': this.setState({ username: event.target.value }); break;
-            case 'password': this.setState({ password: event.target.value }); break;
-            case 'repeatPassword': this.setState({ repeatPassword: event.target.value }); break;
+        const { name, value } = event.target;
+        switch (name) {
+            case 'email': this.setState({ email: value }); break;
+            case 'username': this.setState({ username: value }); break;
+            case 'password': this.setState({ password: value }); break;
+            case 'repeatPassword': this.setState({ repeatPassword: value }); break;
             default: break;
         };
     };
 
     render() {
-        return(
+        const { search } = this.props.location;
+        const { email, password, username, repeatPassword } = this.state;
+        return (
             <div className='register-form'>
-                {
-                    (this.props.history.location.search.search('missingFields') > -1)
-                        ? <p>Uzupełnij wszystkie pola!</p>
-                        : null
+                { search.search('missingFields') > -1
+                    ? <p>Uzupełnij wszystkie pola!</p>
+                    : null
                 }
-                {
-                    (this.props.history.location.search.search('duplicateEmail') > -1)
-                        ? <p>Ten adres email jest już zajęty!</p>
-                        : null
+                { search.search('duplicateEmail') > -1
+                    ? <p>Ten adres email jest już zajęty!</p>
+                    : null
                 }
-                {
-                    (this.state.password !== this.state.repeatPassword || this.props.history.location.search.search('badPassword') > -1)
-                        ? <p>Hasło i jego powtórzenie muszą być identyczne</p>
-                        : null
+                { (password !== repeatPassword || search.search('badPassword') > -1)
+                    ? <p>Hasło i jego powtórzenie muszą być identyczne</p>
+                    : null
                 }
                 <form action='/api/register' method='post'>
-                    <label>Email:
-                        <input 
-                            type='email'
-                            name='email'
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                            required />
-                    </label><br />
-                    <label>Nazwa użytkownika:
-                        <input 
-                            type='text'
-                            name='username'
-                            value={this.state.username}
-                            onChange={this.handleChange}
-                            required />
-                    </label><br />
-                    <label>Hasło:
-                        <input
-                            type='password'
-                            name='password'
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            required />
-                    </label><br />
-                    <label>Powtórz hasło:
-                        <input 
-                            type='password'
-                            name='repeatPassword'
-                            value={this.state.repeatPassword}
-                            onChange={this.handleChange}
-                            required />
-                    </label><br /><br />
-                    <input className='button' type='submit' value='Rejestracja' />
+                    <input className='form-input'
+                        type='email'
+                        name='email'
+                        placeholder='EMAIL'
+                        value={ email }
+                        onChange={ this.handleChange }
+                        required />
+                    <input className='form-input'
+                        type='text'
+                        name='username'
+                        placeholder='NAZWA UŻYTKOWNIKA'
+                        value={ username }
+                        onChange={ this.handleChange }
+                        required />
+                    <input className='form-input'
+                        type='password'
+                        name='password'
+                        placeholder='HASŁO'
+                        value={ password }
+                        onChange={ this.handleChange }
+                        required />
+                    <input className='form-input'
+                        type='password'
+                        name='repeatPassword'
+                        placeholder='POWTÓRZ HASŁO'
+                        value={ repeatPassword }
+                        onChange={ this.handleChange }
+                        required />
+                    <input className='button button--important' type='submit' value='Rejestracja' />
                 </form>
+                <div>
+                    <NavLink to='/' className='button'>Powrót</NavLink>
+                </div>
             </div>
         );
     };
 };
+
+export default RegisterForm;

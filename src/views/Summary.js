@@ -27,6 +27,9 @@ class Summary extends Component {
                     if (res !== 'ERROR') {
                         this.props.setUserData(res);
                     };
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
         };
     };
@@ -37,9 +40,9 @@ class Summary extends Component {
             return (
                 <div>
                     <h2>Podsumowanie</h2>
-                    <p>Aby wyświetlić swoje aktualne postępy, musisz być zalogowany.</p>
-                    <NavLink to='/' className='button button--big'>Logowanie</NavLink>
-                    <NavLink to='/register' className='button'>Rejestracja</NavLink>
+                    <p>Aby wyświetlić swoje aktualne postępy, musisz być zalogowany.</p><br />
+                    <NavLink to='/' className='button button--important'>Logowanie</NavLink><br />
+                    <NavLink to='/register' className='button'>Rejestracja</NavLink><br />
                     <NavLink to='/home' className='button'>Powrót</NavLink>
                 </div>
             );
@@ -48,32 +51,32 @@ class Summary extends Component {
             return (
                 <div>
                     <h2>Podsumowanie</h2>
-                    <p>Nie masz jeszcze żadnych fiszek w pudełku. Wykonaj swój pierwszy test aby dodać kilka.</p>
-                    <NavLink to='/test' className='button button--big'>Test</NavLink>
+                    <p>Nie masz jeszcze żadnych fiszek w pudełku. Wykonaj swój pierwszy test aby dodać kilka.</p><br />
+                    <NavLink to='/test' className='button button--important'>Test</NavLink><br />
                     <NavLink to='/home' className='button'>Powrót</NavLink>
                 </div>
             );
         };
         let boxes = [];
         for (let i = 1; i < 6; i++) {
-            boxes.push(<SummaryBox key={i} boxNumber={i} boxAmount={box[i].length} />)
+            boxes.push(<SummaryBox key={ i } boxNumber={ i } boxAmount={ box[i].length } />)
         };
         return (
             <div className='summary'>
                 <h2>Podsumowanie</h2><br />
-                {afterTest
+                { afterTest
                     ? <p>Gratulacje! Zakończyłeś/aś swoją dzisiejszą sesję nauki! :)</p>
                     : null
                 }
                 <p>Aktualny stan twojego pudełka z fiszkami:</p>
                 <div className='summary-box-container'>
-                    <SummaryBox boxNumber={'Jeszcze nie znasz'} boxAmount={box[0].length} />
+                    <SummaryBox boxNumber={ 'Jeszcze nie znasz' } boxAmount={ box[0].length } />
                     <div className='summary-box'>
-                        {boxes}
+                        { boxes }
                     </div>
-                    <SummaryBox boxNumber={'Już umiesz'} boxAmount={box[6].length} />
+                    <SummaryBox boxNumber={ 'Już umiesz' } boxAmount={ box[6].length } />
                 </div>
-                <NavLink to='/home' className='button button--big'>Kontynuuj</NavLink>
+                <NavLink to='/home' className='button button--important'>Kontynuuj</NavLink>
             </div>
         );
     };
