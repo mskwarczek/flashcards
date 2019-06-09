@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { clearUserData } from '../common/reducers/userActions';
 
@@ -13,7 +14,7 @@ const mapDispatchToProps = dispatch => ({
     clearUserData: () => dispatch(clearUserData())
 });
 
-const Home = (props) => {
+const Profile = (props) => {
 
     const logout = () => {
         fetch('/api/logout', {
@@ -31,13 +32,15 @@ const Home = (props) => {
     };
 
     return (
-        <div className='home'>
-            <NavLink to='/test' className='button button--big'>Test</NavLink>
-            <NavLink to='/practice' className='button button--big'>Trening</NavLink>
-            <NavLink to='/summary' className='button button--big'>Podsumowanie</NavLink>
-            <input type='button' className='button' value='Wyloguj' onClick={logout} />
+        <div>
+
         </div>
     );
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile));
+
+Profile.propTypes = {
+    user: PropTypes.object.isRequired,
+    clearUserData: PropTypes.func.isRequired
+};

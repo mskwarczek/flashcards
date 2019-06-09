@@ -33,7 +33,7 @@ export default class Practice extends Component {
                 <h2>Trening</h2>
                 <Card
                     card={this.state.cards[this.state.activeCard]} nextCard={this.nextCard} />
-                <NavLink to='/home'><div className='button'>Zakończ</div></NavLink>
+                <NavLink to='/home' className='button'>Zakończ</NavLink>
             </div>
             : <div>
                 Trwa pobieranie danych z serwera...

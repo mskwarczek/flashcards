@@ -86,9 +86,9 @@ class Login extends Component {
                     </form>
                 </div>
                 <br />
-                <NavLink to='/register'><div className='button'>Rejestracja</div></NavLink>
+                <NavLink to='/register' className='button'>Rejestracja</NavLink>
                 <br />
-                <NavLink to='/home'><div className='button'>Bez logowania*</div></NavLink>
+                <NavLink to='/home' className='button'>Bez logowania*</NavLink>
                 <p>* Dostępna tylko opcja treningu</p>
             </div>
         );

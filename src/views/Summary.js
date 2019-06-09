@@ -38,9 +38,9 @@ class Summary extends Component {
                 <div>
                     <h2>Podsumowanie</h2>
                     <p>Aby wyświetlić swoje aktualne postępy, musisz być zalogowany.</p>
-                    <NavLink to='/'><div className='button button--big'>Logowanie</div></NavLink>
-                    <NavLink to='/register'><div className='button button--big'>Rejestracja</div></NavLink>
-                    <NavLink to='/home'><div className='button button--big'>Powrót</div></NavLink>
+                    <NavLink to='/' className='button button--big'>Logowanie</NavLink>
+                    <NavLink to='/register' className='button'>Rejestracja</NavLink>
+                    <NavLink to='/home' className='button'>Powrót</NavLink>
                 </div>
             );
         };
@@ -49,8 +49,8 @@ class Summary extends Component {
                 <div>
                     <h2>Podsumowanie</h2>
                     <p>Nie masz jeszcze żadnych fiszek w pudełku. Wykonaj swój pierwszy test aby dodać kilka.</p>
-                    <NavLink to='/test'><div className='button button--big'>Test</div></NavLink>
-                    <NavLink to='/home'><div className='button button--big'>Powrót</div></NavLink>
+                    <NavLink to='/test' className='button button--big'>Test</NavLink>
+                    <NavLink to='/home' className='button'>Powrót</NavLink>
                 </div>
             );
         };
@@ -73,7 +73,7 @@ class Summary extends Component {
                     </div>
                     <SummaryBox boxNumber={'Już umiesz'} boxAmount={box[6].length} />
                 </div>
-                <NavLink to='/home'><div className='button button--big'>Kontynuuj</div></NavLink>
+                <NavLink to='/home' className='button button--big'>Kontynuuj</NavLink>
             </div>
         );
     };

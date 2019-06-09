@@ -147,7 +147,7 @@ class Test extends Component {
                     <ProgressBar
                         cards={this.props.cards}
                         current={this.state.index} />
-                    <NavLink to='/home'><div className='button'>Przerwij</div></NavLink>
+                    <NavLink to='/home' className='button'>Przerwij</NavLink>
                     <p>Twoja sesja nie zostanie zapisana</p>
                 </div>);
             case 2: return (
@@ -155,7 +155,7 @@ class Test extends Component {
                     afterTest={true} />);
             case -1: return (
                 <div className='test'>
-                    <NavLink to='/'><div className='button button--big'>Musisz się zalogować</div></NavLink>
+                    <NavLink to='/' className='button button--big'>Musisz się zalogować</NavLink>
                 </div>);
             default: return null;
         };

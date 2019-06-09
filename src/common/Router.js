@@ -7,6 +7,8 @@ import Home from '../views/Home';
 import Test from '../views/Test';
 import Practice from '../views/Practice';
 import Summary from '../views/Summary';
+import Profile from '../views/Profile';
+import AboutFlashcards from '../views/AboutFlashcards';
 
 export default function Router() {
     return (
@@ -17,6 +19,8 @@ export default function Router() {
             <Route exact path='/test' component={Test} />
             <Route exact path='/practice' component={Practice} />
             <Route exact path='/summary' component={Summary} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/about' component={AboutFlashcards} />
         </Switch>
     );
 };
