@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import Card from './Card';
 import ProgressBar from './ProgressBar';
 import Summary from './Summary';
-import { apiCall } from '../common/tools';
+import apiCall from '../common/apiCall';
 import { pushForward, pushBackward, fillCardsArray } from '../common/reducers/cardActions.js';
 import { setUserData } from '../common/reducers/userActions.js';
 
@@ -28,33 +28,38 @@ class Test extends Component {
         this.state = {
             index: 0,
             running: 0, // 0 - test not started, 1 - test running, 2 - test finished, -1 user not logged in
-            firstBoxBaseSize: 10
+            firstBoxBaseSize: 15,
+            error: null
         };
     };
 
     componentDidMount() {
         if (this.props.user.isLoggedIn !== true) {
-            fetch('/api/user')
-                .then (res => res.json())
-                .then(res => {
-                    if (res === 'ERROR') {
-                        this.setState({running: -1})
+            apiCall('/api/user', {}, (res, err) => {
+                if (err) {
+                    if (err.message === '401') {
+                        this.setState({ running: -1 });
                     } else {
-                        this.props.setUserData(res);
-                        this.getData().then(result => this.prepareFlashcards(result));
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                        this.setState({ error: err.message });
+                    };
+                } else {
+                    this.props.setUserData(res);
+                    this.getData();
+                };
+            });
         } else {
-            this.getData().then(result => this.prepareFlashcards(result));
+            this.getData();
         };
     };
 
-    getData = async () => {
-        const cards = await apiCall('/flashcards');
-        return cards;
+    getData = () => {
+        apiCall('api/flashcards', {}, (res, err) => {
+            if (err) {
+                this.setState({ error: `Nie udało się pobrać fiszek. ${err.message}` });
+            } else {
+                this.prepareFlashcards(res);
+            };
+        });
     };
 
     prepareFlashcards = (cards) => {
@@ -114,17 +119,18 @@ class Test extends Component {
     };
 
     sendUserData = (newData) => {
-        fetch('/api/userUpdate', {
+        newData = JSON.stringify(newData);
+        apiCall('/api/userUpdate', {
             method: 'PUT',
             headers: {
-              'Content-Type': 'application/json',
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newData),
+            body: newData,
         });
     };
 
     updateUserData = () => {
-        let newData = [[],[],[],[],[],[],[]];
+        let newData = [[], [], [], [], [], [], []];
         this.props.cards.forEach(card => {
             newData[card.box].push(card.id);
         });
@@ -134,33 +140,45 @@ class Test extends Component {
     };
 
     render() {
-        switch(this.state.running) {
-            case 0: return (
-                <div className='test'>
-                    Trwa pobieranie danych z serwera...
-                </div>);
-            case 1: return (
-                <div className='test'>
-                    <h2>Test</h2>
-                    <Card 
-                        card={ this.props.cards[this.state.index] }
-                        test={ true }
-                        pushForward={ this.pushForward }
-                        pushBackward={ this.pushBackward } />
-                    <ProgressBar
-                        cards={ this.props.cards }
-                        current={ this.state.index } />
-                    <NavLink to='/home' className='button'>Przerwij</NavLink>
-                    <p>Twoja sesja nie zostanie zapisana</p>
-                </div>);
-            case 2: return (
-                <Summary
-                    afterTest={ true } />);
-            case -1: return (
-                <div className='test'>
-                    <NavLink to='/' className='button button--big'>Musisz się zalogować</NavLink>
-                </div>);
-            default: return null;
+        const { running, error, index } = this.state;
+        if (error) {
+            return (
+                <div>
+                    { error }<br />
+                    <NavLink to='/home' className='button'>Powrót</NavLink>
+                </div>
+            );
+        } else {
+            switch (running) {
+                case 0: return (
+                    <div className='test'>
+                        Trwa pobieranie danych z serwera...
+                    </div>);
+                case 1: return (
+                    <div className='test'>
+                        <h2>Test</h2>
+                        <Card
+                            card={ this.props.cards[index] }
+                            test={ true }
+                            pushForward={ this.pushForward }
+                            pushBackward={ this.pushBackward } />
+                        <ProgressBar
+                            cards={ this.props.cards }
+                            current={ index } />
+                        <NavLink to='/home' className='button'>Przerwij</NavLink>
+                        <p>Twoja sesja nie zostanie zapisana</p>
+                    </div>);
+                case 2: return (
+                    <Summary
+                        afterTest={ true } />);
+                case -1: return (
+                    <div className='test'>
+                        <p>Musisz się zalogować</p>
+                        <NavLink to='/' className='button'>Logowanie</NavLink>
+                        <NavLink to='/home' className='button'>Powrót</NavLink>
+                    </div>);
+                default: return null;
+            };
         };
     };
 };

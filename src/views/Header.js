@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import apiCall from '../common/apiCall';
 import { setUserData, clearUserData } from '../common/reducers/userActions';
 
 const mapStateToProps = state => ({
@@ -20,37 +21,21 @@ class Header extends Component {
     componentDidMount() {
         const { user, location } = this.props;
         if (user.isLoggedIn !== true && location.pathname !== '/') {
-            fetch('/api/user')
-                .then(res => {
-                    return res.json();
-                })
-                .then(res => {
-                    if (res !== 'ERROR') {
-                        this.props.setUserData(res);
-                    };
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            apiCall('/api/user', {}, (res, err) => {
+                if (!err) {
+                    this.props.setUserData(res);
+                };
+            });
         };
     };
 
     logout = () => {
-        fetch('/api/logout', {
-            method: 'POST'
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res !== 'ERROR') {
-                    this.props.clearUserData();
-                    this.props.history.push('/');
-                } else {
-                    console.log(res);
-                };
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        apiCall('/api/logout', { method: 'POST' }, (res, err) => {
+            if (!err) {
+                this.props.clearUserData();
+                this.props.history.push('/');
+            };
+        });
     };
 
     render() {

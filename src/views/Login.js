@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
+import apiCall from '../common/apiCall';
 import { setUserData } from '../common/reducers/userActions';
 
 const mapStateToProps = state => ({
@@ -34,27 +35,22 @@ class Login extends Component {
     };
 
     login = () => {
-        const body = { email: this.state.email, password: this.state.password };
-        fetch('/api/login', {
+        let body = { email: this.state.email, password: this.state.password };
+        body = JSON.stringify(body);
+        apiCall('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(body)
-        })
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(res.statusText);
-                } else {
-                    return res.json();
-                };
-            })
-            .then(res => this.props.setUserData(res))
-            .then(() => this.props.history.push('/home'))
-            .catch(error => {
-                console.log(error);
-                this.setState({ error: error.message });
-            });
+            body: body
+        }, (res, err) => {
+            if (err) {
+                this.setState({ error: err.message });
+            } else {
+                this.props.setUserData(res);
+                this.props.history.push('/home');
+            };
+        });
     };
 
     render() {
@@ -63,9 +59,9 @@ class Login extends Component {
             <div className='login'>
                 <h3>Fiszki do nauki języków, pojęć, dat i innych informacji, które trzeba po prostu zapaiętać :)</h3>
                 <div className='login__form'>
-                    { error === 'Unauthorized'
-                            ? <p>Błąd logowania.</p>
-                            : null
+                    { error === '401'
+                        ? <p>Błąd logowania.</p>
+                        : null
                     }
                     <form>
                         <input className='form-input'
@@ -78,7 +74,7 @@ class Login extends Component {
                         <input className='form-input'
                             type='password'
                             name='password'
-                            placeholder='PASSWORD'
+                            placeholder='HASŁO'
                             value={ password }
                             onChange={ this.handleChange }
                             required />

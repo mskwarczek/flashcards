@@ -30,7 +30,7 @@ server.use(session({
 
 const checkLogin = (req, res, next) => {
     if (!req.session.userId) {
-        res.json("ERROR");
+        res.sendStatus(401);
     }
     else {
         mongoose.connect(DATABASEURL, {
@@ -46,7 +46,7 @@ server.get('/api/flashcards', (req, res) => {
     res.sendFile(path.join(__dirname, 'server/data/flashcards.json'));
 });
 
-server.post('/api/register', (req, res) => {
+server.post('/api/register', (req, res, next) => {
     if (!req.body.email || !req.body.username || !req.body.password || !req.body.repeatPassword) {
         res.redirect('/register?missingFields');
     }
@@ -59,9 +59,9 @@ server.post('/api/register', (req, res) => {
             useCreateIndex: true,
             autoReconnect: true
         });
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-            if (err) {
-                console.log(err);
+        bcrypt.hash(req.body.password, 10, (error, hash) => {
+            if (error) {
+                next(error);
             }
             else {
                 let newUser = new User({
@@ -70,9 +70,8 @@ server.post('/api/register', (req, res) => {
                     password: hash,
                     flashcards: [],
                 });
-                console.log(newUser);
-                newUser.save((err, user) => {
-                    if (err && err.code === 11000) {
+                newUser.save((error, user) => {
+                    if (error && error.code === 11000) {
                         res.redirect('/register?duplicateEmail');
                     }
                     else res.redirect('/');
@@ -82,7 +81,7 @@ server.post('/api/register', (req, res) => {
     };
 });
 
-server.post('/api/login', (req, res) => {
+server.post('/api/login', (req, res, next) => {
     if (!req.body.email || !req.body.password)
         res.sendStatus(401);
     else {
@@ -97,11 +96,11 @@ server.post('/api/login', (req, res) => {
                     throw new Error('badEmail');
                 }
                 else {
-                    bcrypt.compare(req.body.password, user.password, (err, result) => {
-                        if (err) {
-                            throw new Error('bcryptError');
+                    bcrypt.compare(req.body.password, user.password, (error, result) => {
+                        if (error) {
+                            res.sendStatus(401);
                         }
-                        else if (result === true) {
+                        else if (result) {
                             req.session.userId = user._id;
                             user = {
                                 username: user.username,
@@ -112,7 +111,7 @@ server.post('/api/login', (req, res) => {
                             res.send(JSON.stringify(user));
                         }
                         else {
-                            throw new Error('badPassword');
+                            res.sendStatus(401);
                         };
                     });
                 };
@@ -124,13 +123,13 @@ server.post('/api/login', (req, res) => {
     };
 });
 
-server.put('/api/userUpdate', checkLogin, (req, res) => {
+server.put('/api/userUpdate', checkLogin, (req, res, next) => {
     User.updateOne({ _id: req.session.userId }, { flashcards: req.body.flashcards }, (error, result) => {
         if (error) {
             console.log(error);
-            res.send(error);
+            next(error);
         } else {
-            res.end();
+            res.send('"OK"');
         };
     });
 });
@@ -153,17 +152,21 @@ server.get('/api/user', checkLogin, (req, res) => {
         })
         .catch(error => {
             console.log(error);
-            res.sendStatus(403);
+            res.sendStatus(401);
         });
 });
 
-server.post('/api/logout', (req, res) => {
+server.post('/api/logout', (req, res, next) => {
     req.session.destroy(error => {
+        console.log('in destroy');
         if (error) {
-            res.json("ERROR");
+            console.log('in if');
+            next(error);
         } else {
+            console.log('in else');
             res.clearCookie('session_id');
-            res.json("OK");
+            console.log('after cookie');
+            res.send('"OK"');
         };
     });
 });

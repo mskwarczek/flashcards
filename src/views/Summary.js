@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import SummaryBox from './SummaryBox';
+import apiCall from '../common/apiCall';
 import { setUserData } from '../common/reducers/userActions.js';
 
 const mapStateToProps = state => ({
@@ -19,18 +20,11 @@ class Summary extends Component {
 
     componentDidMount() {
         if (this.props.user !== true) {
-            fetch('/api/user')
-                .then(res => {
-                    return res.json();
-                })
-                .then(res => {
-                    if (res !== 'ERROR') {
-                        this.props.setUserData(res);
-                    };
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            apiCall('/api/user', {}, (res, err) => {
+                if (!err) {
+                    this.props.setUserData(res);
+                };
+            });
         };
     };
 

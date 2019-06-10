@@ -2,25 +2,26 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Card from './Card';
-import { apiCall } from '../common/tools';
+import apiCall from '../common/apiCall';
 
 class Practice extends Component {
     constructor(props) {
         super(props);
         this.state = {
             cards: [],
-            activeCard: 0
+            activeCard: 0,
+            error: null
         };
     };
 
     componentDidMount() {
-        this.getData()
-            .then(result => this.setState({ cards: result }));
-    };
-
-    getData = async () => {
-        const cards = await apiCall('/flashcards');
-        return cards;
+        apiCall('/api/flashcards', {}, (res, err) => {
+            if(err) {
+                this.setState({ error: `Nie udało się pobrać fiszek. ${err.message}` });
+            } else {
+                this.setState({ cards: res });
+            };
+        });
     };
 
     nextCard = () => {
@@ -28,17 +29,25 @@ class Practice extends Component {
     };
 
     render() {
-        const { cards, activeCard } = this.state;
-        return this.state.cards.length > 0 
-            ? <div className='practice'>
-                <h2>Trening</h2>
-                <Card
-                    card={ cards[activeCard] } nextCard={ this.nextCard } />
-                <NavLink to='/home' className='button'>Zakończ</NavLink>
-            </div>
-            : <div>
-                Trwa pobieranie danych z serwera...
-            </div>
+        const { cards, activeCard, error } = this.state;
+        if (error) {
+            return (
+                <div>
+                    { error }<br />
+                    <NavLink to='/home' className='button'>Powrót</NavLink>
+                </div>
+            );
+        } else { 
+            return cards.length > 0 
+                ? <div className='practice'>
+                    <h2>Trening</h2>
+                    <Card card={ cards[activeCard] } nextCard={ this.nextCard } />
+                    <NavLink to='/home' className='button'>Zakończ</NavLink>
+                </div>
+                : <div>
+                    Trwa pobieranie danych z serwera...
+                </div>
+        };
     };
 };
 
