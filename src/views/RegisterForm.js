@@ -33,7 +33,7 @@ class RegisterForm extends Component {
                     : null
                 }
                 { search.search('duplicateEmail') > -1
-                    ? <p>Ten adres email jest już zajęty!</p>
+                    ? <p>Ten adres email i/lub nazwa użytkownika są już zajęte!</p>
                     : null
                 }
                 { (password !== repeatPassword || search.search('badPassword') > -1)

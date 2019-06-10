@@ -57,7 +57,7 @@ class Login extends Component {
         const { email, password, error } = this.state;
         return (
             <div className='login'>
-                <h3>Fiszki do nauki języków, pojęć, dat i innych informacji, które trzeba po prostu zapaiętać :)</h3>
+                <h3>Fiszki do nauki języków, pojęć, dat i innych informacji, które trzeba po prostu zapamiętać :)</h3>
                 <div className='login__form'>
                     { error === '401'
                         ? <p>Błąd logowania.</p>

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 import Card from './Card';
+import LoginRedirect from './LoginRedirect';
 import ProgressBar from './ProgressBar';
-import Summary from './Summary';
 import apiCall from '../common/apiCall';
 import { pushForward, pushBackward, fillCardsArray } from '../common/reducers/cardActions.js';
 import { setUserData } from '../common/reducers/userActions.js';
@@ -111,21 +112,20 @@ class Test extends Component {
                 index: newIndex
             });
         else {
-            this.updateUserData();
             this.setState({
-                running: 2,
+                running: 2
             });
         };
     };
 
     sendUserData = (newData) => {
         newData = JSON.stringify(newData);
-        apiCall('/api/userUpdate', {
+        apiCall('/api/flashcardsUpdate', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: newData,
+            body: newData
         });
     };
 
@@ -137,6 +137,7 @@ class Test extends Component {
         newData = { ...this.props.user, flashcards: newData }
         this.props.setUserData(newData);
         this.sendUserData({ flashcards: newData.flashcards });
+        this.props.history.push('/summary');
     };
 
     render() {
@@ -169,13 +170,16 @@ class Test extends Component {
                         <p>Twoja sesja nie zostanie zapisana</p>
                     </div>);
                 case 2: return (
-                    <Summary
-                        afterTest={ true } />);
+                    <div>
+                        <h2>Test</h2>
+                        <p>Gratulacje! Zakończyłeś/aś dzisiejszą sesję nauki! :)</p>
+                        <p>Przejdź do podsumowania.</p><br />
+                        <input type='button' className='button button--important' value='Kontynuuj' onClick={ this.updateUserData } />
+                    </div>);
                 case -1: return (
-                    <div className='test'>
-                        <p>Musisz się zalogować</p>
-                        <NavLink to='/' className='button'>Logowanie</NavLink>
-                        <NavLink to='/home' className='button'>Powrót</NavLink>
+                    <div>
+                        <h2>Test</h2>
+                        <LoginRedirect />
                     </div>);
                 default: return null;
             };
@@ -192,4 +196,4 @@ Test.propTypes = {
     setUserData: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Test);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Test));

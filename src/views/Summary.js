@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import SummaryBox from './SummaryBox';
+import LoginRedirect from './LoginRedirect';
 import apiCall from '../common/apiCall';
 import { setUserData } from '../common/reducers/userActions.js';
 
@@ -34,10 +35,7 @@ class Summary extends Component {
             return (
                 <div>
                     <h2>Podsumowanie</h2>
-                    <p>Aby wyświetlić swoje aktualne postępy, musisz być zalogowany.</p><br />
-                    <NavLink to='/' className='button button--important'>Logowanie</NavLink><br />
-                    <NavLink to='/register' className='button'>Rejestracja</NavLink><br />
-                    <NavLink to='/home' className='button'>Powrót</NavLink>
+                    <LoginRedirect />
                 </div>
             );
         };

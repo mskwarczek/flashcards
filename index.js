@@ -72,6 +72,7 @@ server.post('/api/register', (req, res, next) => {
                 });
                 newUser.save((error, user) => {
                     if (error && error.code === 11000) {
+                        console.log(error);
                         res.redirect('/register?duplicateEmail');
                     }
                     else res.redirect('/');
@@ -123,7 +124,7 @@ server.post('/api/login', (req, res, next) => {
     };
 });
 
-server.put('/api/userUpdate', checkLogin, (req, res, next) => {
+server.put('/api/flashcardsUpdate', checkLogin, (req, res, next) => {
     User.updateOne({ _id: req.session.userId }, { flashcards: req.body.flashcards }, (error, result) => {
         if (error) {
             console.log(error);
@@ -158,14 +159,10 @@ server.get('/api/user', checkLogin, (req, res) => {
 
 server.post('/api/logout', (req, res, next) => {
     req.session.destroy(error => {
-        console.log('in destroy');
         if (error) {
-            console.log('in if');
             next(error);
         } else {
-            console.log('in else');
             res.clearCookie('session_id');
-            console.log('after cookie');
             res.send('"OK"');
         };
     });

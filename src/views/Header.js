@@ -45,11 +45,11 @@ class Header extends Component {
                 { user.username && location.pathname !== '/'
                     ? <div className='user-panel'>
                         <div>
-                            <p>Hello <span className='highlight'>{ user.username }</span>!</p>
+                            <p>Witaj <span className='highlight'>{ user.username }</span>!</p>
                         </div>
                         <div className='user-panel__buttons'>
                             <NavLink to='/profile' className='button button--small'>Profil</NavLink>
-                            <input type='button' className='button button--small' value='Wyloguj' onClick={ this.logout}  />
+                            <input type='button' className='button button--small' value='Wyloguj' onClick={ this.logout } />
                         </div>
                     </div>
                     : <div className='user-panel__buttons'>

@@ -10,15 +10,18 @@ let UserSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        unique: true,
         trim: true
     },
     password: {
         type: String,
         required: true,
+        unique: false
     },
     flashcards: {
         type: Array,
-        required: true
+        required: true,
+        unique: false
     }
 });
 
