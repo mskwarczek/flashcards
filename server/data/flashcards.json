@@ -7,7 +7,7 @@
 	{
 		"id": 2,
 		"front": "To have",
-		"back": "Mieć"
+		"back": "Mieć, posiadać"
 	},
 	{
 		"id": 3,
@@ -17,27 +17,27 @@
 	{
 		"id": 4,
 		"front": "To say",
-		"back": "Mówić"
+		"back": "Mówić, powiedzieć"
 	},
 	{
 		"id": 5,
 		"front": "To go",
-		"back": "Iść"
+		"back": "Iść, udać się"
 	},
 	{
 		"id": 6,
 		"front": "To get",
-		"back": "Dostać"
+		"back": "Dostać, zdobyć"
 	},
 	{
 		"id": 7,
 		"front": "To make",
-		"back": "Robić"
+		"back": "Robić, zrobić"
 	},
 	{
 		"id": 8,
 		"front": "To know",
-		"back": "Wiedzieć"
+		"back": "Wiedzieć, znać"
 	},
 	{
 		"id": 9,
@@ -47,7 +47,7 @@
 	{
 		"id": 10,
 		"front": "To take",
-		"back": "Brać"
+		"back": "Brać, przyjąć"
 	},
 	{
 		"id": 11,
@@ -57,7 +57,7 @@
 	{
 		"id": 12,
 		"front": "To come",
-		"back": "Przyjść"
+		"back": "Przyjść, przybyć"
 	},
 	{
 		"id": 13,
@@ -67,12 +67,12 @@
 	{
 		"id": 14,
 		"front": "To look",
-		"back": "Patrzeć"
+		"back": "Patrzeć, wyglądać"
 	},
 	{
 		"id": 15,
 		"front": "To use",
-		"back": "Użyć"
+		"back": "Używać"
 	},
 	{
 		"id": 16,
@@ -82,7 +82,7 @@
 	{
 		"id": 17,
 		"front": "To give",
-		"back": "Dać"
+		"back": "Dawać"
 	},
 	{
 		"id": 18,
@@ -92,12 +92,12 @@
 	{
 		"id": 19,
 		"front": "To work",
-		"back": "Pracować"
+		"back": "Pracować, działać"
 	},
 	{
 		"id": 20,
 		"front": "To call",
-		"back": "Nazwać, wołać"
+		"back": "Nazwać, wołać, zadzwonić"
 	},
 	{
 		"id": 21,
@@ -127,12 +127,12 @@
 	{
 		"id": 26,
 		"front": "To leave",
-		"back": "Odejść"
+		"back": "Odejść, wyjść"
 	},
 	{
 		"id": 27,
 		"front": "To put",
-		"back": "Umieścić"
+		"back": "Umieścić, wsadzić"
 	},
 	{
 		"id": 28,
@@ -142,7 +142,7 @@
 	{
 		"id": 29,
 		"front": "To keep",
-		"back": "Trzymać"
+		"back": "Trzymać, zachować"
 	},
 	{
 		"id": 30,
@@ -157,22 +157,22 @@
 	{
 		"id": 32,
 		"front": "To seem",
-		"back": "Zdawać się"
+		"back": "Wydawać się"
 	},
 	{
 		"id": 33,
 		"front": "To help",
-		"back": "Pomóć"
+		"back": "Pomóc"
 	},
 	{
 		"id": 34,
 		"front": "To talk",
-		"back": "Rozmawiać"
+		"back": "Rozmawiać, mówić"
 	},
 	{
 		"id": 35,
 		"front": "To turn",
-		"back": "Obrócić"
+		"back": "Obrócić, odwrócić"
 	},
 	{
 		"id": 36,
@@ -187,12 +187,12 @@
 	{
 		"id": 38,
 		"front": "To hear",
-		"back": "Usłyszeć"
+		"back": "Usłyszeć, słyszeć"
 	},
 	{
 		"id": 39,
 		"front": "To play",
-		"back": "Grać"
+		"back": "Grać, bawić się"
 	},
 	{
 		"id": 40,
@@ -202,7 +202,7 @@
 	{
 		"id": 41,
 		"front": "To move",
-		"back": "Ruszać się"
+		"back": "Przenieść, poruszać"
 	},
 	{
 		"id": 42,
@@ -222,7 +222,7 @@
 	{
 		"id": 45,
 		"front": "To hold",
-		"back": "Trzymać"
+		"back": "Trzymać, zmieścić"
 	},
 	{
 		"id": 46,
@@ -232,7 +232,7 @@
 	{
 		"id": 47,
 		"front": "To happen",
-		"back": "Zdarzyć"
+		"back": "Wydarzyć się"
 	},
 	{
 		"id": 48,
@@ -242,7 +242,7 @@
 	{
 		"id": 49,
 		"front": "To provide",
-		"back": "Zapewniać"
+		"back": "Zapewniać, dostarczać"
 	},
 	{
 		"id": 50,
@@ -261,18 +261,18 @@
 	},
 	{
 		"id": 53,
-		"front": "To play",
-		"back": "Grać"
+		"front": "To pay",
+		"back": "Płacić"
 	},
 	{
 		"id": 54,
 		"front": "To meet",
-		"back": "Spotkać"
+		"back": "Spotkać, poznać"
 	},
 	{
 		"id": 55,
 		"front": "To include",
-		"back": "Zawrzeć"
+		"back": "Zawrzeć, uwzględniać"
 	},
 	{
 		"id": 56,
@@ -282,12 +282,12 @@
 	{
 		"id": 57,
 		"front": "To set",
-		"back": "Ustawić"
+		"back": "Ustawić, określić"
 	},
 	{
 		"id": 58,
 		"front": "To learn",
-		"back": "Uczyć"
+		"back": "Uczyć się"
 	},
 	{
 		"id": 59,
@@ -297,7 +297,7 @@
 	{
 		"id": 60,
 		"front": "To lead",
-		"back": "Prowadzić"
+		"back": "Prowadzić, przewodzić"
 	},
 	{
 		"id": 61,
@@ -307,17 +307,17 @@
 	{
 		"id": 62,
 		"front": "To watch",
-		"back": "Oglądać"
+		"back": "Oglądać, obserwować"
 	},
 	{
 		"id": 63,
 		"front": "To follow",
-		"back": "Podążać"
+		"back": "Podążać, śledzić"
 	},
 	{
 		"id": 64,
 		"front": "To stop",
-		"back": "Zatrzymać"
+		"back": "Zatrzymać, przestać"
 	},
 	{
 		"id": 65,
@@ -352,7 +352,7 @@
 	{
 		"id": 71,
 		"front": "To grow",
-		"back": "Rosnąć"
+		"back": "Rosnąć, hodować"
 	},
 	{
 		"id": 72,
@@ -377,7 +377,7 @@
 	{
 		"id": 76,
 		"front": "To remember",
-		"back": "Pamiętać"
+		"back": "Pamiętać, zapamiętać"
 	},
 	{
 		"id": 77,
@@ -387,12 +387,12 @@
 	{
 		"id": 78,
 		"front": "To consider",
-		"back": "Rozważać"
+		"back": "Rozważać, brać pod uwagę"
 	},
 	{
 		"id": 79,
 		"front": "To appear",
-		"back": "Zjawić się"
+		"back": "Pojawić się"
 	},
 	{
 		"id": 80,
@@ -407,7 +407,7 @@
 	{
 		"id": 82,
 		"front": "To serve",
-		"back": "Służyć"
+		"back": "Służyć, obsługiwać"
 	},
 	{
 		"id": 83,
@@ -472,7 +472,7 @@
 	{
 		"id": 95,
 		"front": "To pass",
-		"back": "Przejść"
+		"back": "Zdać, przejść"
 	},
 	{
 		"id": 96,

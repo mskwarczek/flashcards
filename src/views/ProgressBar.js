@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ProgressBarBox from './ProgressBarBox';
 
-export default function ProgressBar(props) {
+const ProgressBar = (props) => {
     const calculateWidth = (box) => {
         return ((props.cards.filter(card => card.box === box).length) / props.cards.filter(card => card.box > 0 && card.box < 6).length) * 100 + '%';
     };
@@ -33,3 +33,5 @@ ProgressBar.propTypes = {
     cards: PropTypes.array.isRequired,
     current: PropTypes.number.isRequired
 };
+
+export default ProgressBar;

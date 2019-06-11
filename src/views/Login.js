@@ -25,6 +25,17 @@ class Login extends Component {
         };
     };
 
+    componentDidMount() {
+        if (this.props.user !== true) {
+            apiCall('/api/user', {}, (res, err) => {
+                if (!err) {
+                    this.props.setUserData(res);
+                    this.props.history.push('/home');
+                };
+            });
+        };
+    };
+
     handleChange = (event) => {
         const { name, value } = event.target;
         switch (name) {
