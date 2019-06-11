@@ -1,11 +1,30 @@
+// Imports
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext');
 
+// Variables
 $color-basic: rgb(29, 30, 24);
 $color-basic2: rgb(216, 130, 32);
 $color-active: rgb(15, 221, 139);
 $color-bg: rgb(255, 255, 255);
 $color-bg2: rgb(255,227,129);
 
+// Media queries
+$small-width: 280px;
+$medium-width: 420px;
+
+@mixin small {
+	@media (max-width: $small-width) {
+		@content;
+	}
+}
+
+@mixin medium {
+	@media (max-width: $medium-width) {
+		@content;
+	}
+}
+
+// Mixins
 @mixin position-lt ($horizontal, $vertical) {
     position: absolute;
     top: $vertical;
@@ -14,6 +33,7 @@ $color-bg2: rgb(255,227,129);
             transform: translate(-$horizontal, -$vertical);
 }
 
+// Global
 * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -39,10 +59,6 @@ h1, h2, h3, h4, p {
     margin: .5em auto;
 }
 
-h1 {
-    margin-top: 0;
-}
-
 a {
     text-decoration: none;
     color: $color-basic;
@@ -50,6 +66,18 @@ a {
 
 #root {
     padding: 0;
+}
+
+.app {
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 1em;
+    background-color: $color-bg;
+    text-align: center;
+    @include small {
+        padding: 0 .5em;
+    }
 }
 
 .button {
@@ -139,15 +167,7 @@ a {
     font-size: .7em;
 }
 
-.app {
-    max-width: 1000px;
-    min-height: 100vh;
-    margin: 0 auto;
-    padding: 0 1em;
-    background-color: $color-bg;
-    text-align: center;
-}
-
+// Header component
 .header {
     padding: .5em 0;
 
@@ -162,6 +182,18 @@ a {
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
                 justify-content: space-between;
+        @include small {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-flow: column nowrap;
+                    flex-flow: column nowrap;
+            -webkit-box-pack: start;
+                -ms-flex-pack: start;
+                    justify-content: flex-start;
+            -webkit-box-align: end;
+                -ms-flex-align: end;
+                    align-items: flex-end;
+        }
 
         &__buttons {
             display: -webkit-box;
@@ -180,8 +212,16 @@ a {
     div {
         padding: 0;
     }
+
+    h1 {
+        margin-top: 0;
+        @include medium {
+            margin-top: .5em;
+        }
+    }
 }
 
+// Login component ('/')
 .login {
 
     &__flex-container {
@@ -192,8 +232,9 @@ a {
         -webkit-box-direction: normal;
             -ms-flex-flow: row wrap;
                 flex-flow: row wrap;
-        -ms-flex-pack: distribute;
-            justify-content: space-around;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
         margin: 1em auto;
 
         div {
@@ -216,6 +257,7 @@ a {
     }
 }
 
+// Card component ('/test', '/practice')
 .card {
     width: 21em;
     height: 21em;
@@ -223,6 +265,10 @@ a {
     margin: 2em auto;
     -webkit-perspective: 1000px;
             perspective: 1000px;
+    @include small {
+        width: 16em;
+        height: 16em;
+    }
 
     &__front,
     &__back {
@@ -253,9 +299,37 @@ a {
                 box-shadow: 2px 2px 8px $color-basic2;
     }
 
+    @-webkit-keyframes showDescription {
+        0% {
+            visibility: hidden;
+        }
+        90% {
+            visibility: visible;
+        }
+        100% {
+            visibility: visible;
+        }
+    }
+
+    @keyframes showDescription {
+        0% {
+            visibility: hidden;
+        }
+        90% {
+            visibility: visible;
+        }
+        100% {
+            visibility: visible;
+        }
+    }
+
     &__back {
         -webkit-transform: rotateY(180deg);
                 transform: rotateY(180deg);
+        
+        .card__description {
+            visibility: hidden;
+        }
     }
 
     .flip-front {
@@ -266,6 +340,13 @@ a {
     .flip-back {
         -webkit-transform: rotateY(360deg);
                 transform: rotateY(360deg);
+        
+        .card__description {
+            -webkit-animation: .5s showDescription;
+                    animation: .5s showDescription;
+            -webkit-animation-fill-mode: forwards;
+                    animation-fill-mode: forwards;
+        }
     }
 
     &__title {
@@ -290,6 +371,7 @@ a {
     }
 }
 
+// Test component ('/test')
 .progress-bar-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -316,12 +398,12 @@ a {
                 flex-flow: row nowrap;
         position: relative;
         width: 70%;
-        border: .3em solid $color-basic2;
+        border: .2em solid $color-basic2;
         border-right: none;
     
         &__box {
             height: 100%;
-            border-right: .3em solid $color-basic2;
+            border-right: .2em solid $color-basic2;
             text-align: center;
             position: relative;
         }
@@ -329,10 +411,12 @@ a {
         &__number {
             @include position-lt(50%, 10%);
             font-weight: bold;
+            margin-top: 0;
         }
 
         &__amount {
             @include position-lt(50%, 50%);
+            margin-bottom: 0;
         }
     
         &__overall {
@@ -351,24 +435,40 @@ a {
         width: 15%;
         height: 100%;
         position: relative;
+
+        .progress-bar__number {
+            @include medium {
+                display: none;
+            }
+        }
     }
 }
 
+// Summary component ('/summary')
 .summary-box-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin: 1em;
+    margin: 1em .5em;
+    @include medium {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-flow: column nowrap;
+                flex-flow: column nowrap;
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+    }
 
     .summary-box {
         display: -webkit-box;
