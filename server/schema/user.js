@@ -18,6 +18,12 @@ let UserSchema = new mongoose.Schema({
         required: true,
         unique: false
     },
+    activeFlashcardsSet: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'flashcardsSet',
+        required: true,
+        unique: false
+    },
     flashcards: {
         type: Array,
         required: true,

@@ -69,5 +69,6 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
 
 Header.propTypes = {
     user: PropTypes.object.isRequired,
+    setUserData: PropTypes.func.isRequired,
     clearUserData: PropTypes.func.isRequired
 };

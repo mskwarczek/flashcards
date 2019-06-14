@@ -6,14 +6,16 @@ import PropTypes from 'prop-types';
 
 import LoginRedirect from './LoginRedirect';
 import apiCall from '../common/apiCall';
-import { clearUserData, resetFlashcards } from '../common/reducers/userActions';
+import { setUserData, clearUserData, updateFlashcardsSet, resetFlashcards } from '../common/reducers/userActions';
 
 const mapStateToProps = state => ({
     user: state.userReducer,
 });
 
 const mapDispatchToProps = dispatch => ({
+    setUserData: (user) => dispatch(setUserData(user)),
     clearUserData: () => dispatch(clearUserData()),
+    updateFlashcardsSet: (flashcardsSet) => dispatch(updateFlashcardsSet(flashcardsSet)),
     resetFlashcards: () => dispatch(resetFlashcards())
 });
 
@@ -21,6 +23,9 @@ class Profile extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            flashcardsSets: [],
+            chosenFlashcardsSet: this.props.user.activeFlashcardsSet || '',
+            displayedFlashcardsSet: '',
             message: null
         };
     };
@@ -29,10 +34,40 @@ class Profile extends Component {
         if (this.props.user.isLoggedIn !== true) {
             apiCall('/api/user', {}, (res, err) => {
                 if (!err) {
-                    this.props.setUserData(res);
+                    this.props.user.setUserData(res);
                 };
             });
         };
+        apiCall('/api/flashcardsSets', {}, (res, err) => {
+            if (!err) {
+                this.setState({ flashcardsSets: res });
+            };
+        });
+    };
+
+    handleChange = (event) => {
+        this.setState({ chosenFlashcardsSet: event.target.value });
+    };
+
+    flashcardsSetUpdate = () => {
+        const { chosenFlashcardsSet } = this.state;
+        const newData = JSON.stringify({ activeFlashcardsSet: chosenFlashcardsSet });
+        apiCall('/api/activeSetUpdate', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: newData
+        }, (res, err) => {
+            if (err) {
+                this.setState({ message: `Coś się nie udało. ${err.message}` });
+            }
+            else {
+                this.props.updateFlashcardsSet(chosenFlashcardsSet);
+                this.reset();
+                this.setState({ message: 'Operacja zakończona powodzeniem.' });
+            };
+        });
     };
 
     logout = () => {
@@ -57,14 +92,14 @@ class Profile extends Component {
                 this.setState({ message: `Coś się nie udało. ${err.message}` });
             } else {
                 this.props.resetFlashcards();
-                this.setState({ message: 'Twoje postępy zostały skasowane' });
+                this.setState({ message: 'Operacja zakończona powodzeniem.' });
             };
         });
     };
 
     render() {
         const { username, email, isLoggedIn } = this.props.user;
-        const { message } = this.state;
+        const { message, chosenFlashcardsSet, flashcardsSets } = this.state;
         if (!isLoggedIn) {
             return (
                 <div>
@@ -81,14 +116,31 @@ class Profile extends Component {
                     <p>Nazwa użytkownika: <span className='highlight'>{ username }</span></p>
                     <p>Adres email: <span className='highlight'>{ email }</span></p>
                 </div>
+                    <div>
+                        { message
+                            ? <p>{ message }</p>
+                            : null
+                        }
+                    </div>
                 <div>
                     <h3>Opcje konta</h3>
-                    { message
-                        ? <p>{ message }</p>
-                        : <p></p>
-                    }
+                    <h4>Twój aktywny zestaw fiszek</h4>
+                    <form>
+                        <select name='flashcardsSets' onChange={ this.handleChange } value={ chosenFlashcardsSet }>
+                            { flashcardsSets.length > 0
+                                ? flashcardsSets.map(set => {
+                                    return (
+                                        <option key={ set._id } value={ set._id }>{ set.name } [{ set.lang }]</option>
+                                    );
+                                })
+                                : <option>Wczytywanie zestawów fiszek...</option>
+                            }
+                        </select>
+                        <p>Możesz wybrać inny zestaw z listy. Zmiana zestawu spowoduje zresetowanie wszystkich postępów.</p>
+                        <input type='button' className='button' value='Zmień' onClick={ this.flashcardsSetUpdate } /><br />
+                    </form>
                     <p>Resetowanie postępów - wszystkie fiszki nieodwracalnie wrócą poza pudełko.</p>
-                    <input type='button' className='button button' value='Resetuj' onClick={ this.reset } /><br />
+                    <input type='button' className='button' value='Resetuj' onClick={ this.reset } /><br />
                 </div>
                 <div>
                 <input type='button' className='button' value='Wyloguj' onClick={ this.logout } /><br />
@@ -103,5 +155,8 @@ export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile))
 
 Profile.propTypes = {
     user: PropTypes.object.isRequired,
-    clearUserData: PropTypes.func.isRequired
+    setUserData: PropTypes.func.isRequired,
+    clearUserData: PropTypes.func.isRequired,
+    updateFlashcardsSet: PropTypes.func.isRequired,
+    resetFlashcards: PropTypes.func.isRequired
 };

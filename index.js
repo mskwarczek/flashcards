@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 const DATABASEURL = require('./server/data/dburl.json');
 const SECRETKEY = require('./server/data/secret_key.json');
 const User = require('./server/schema/user');
+const FlashcardsSet = require('./server/schema/flashcardsSet');
 const server = express();
 
 server.use(express.static(path.join(__dirname, 'build')));
@@ -42,6 +43,25 @@ const checkLogin = (req, res, next) => {
     };
 };
 
+server.get('/api/flashcardsSets', (req, res, next) => {
+    mongoose.connect(DATABASEURL, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        autoReconnect: true
+    });
+    FlashcardsSet.find({}, 'name _id lang', (err, docs) => {
+        if (err) {
+            next(err);
+        }
+        else if (!docs) {
+            next('No documents in database');
+        }
+        else {
+            res.send(JSON.stringify(docs));
+        };
+    });
+});
+
 server.get('/api/flashcards', (req, res) => {
     res.sendFile(path.join(__dirname, 'server/data/flashcards.json'));
 });
@@ -68,6 +88,7 @@ server.post('/api/register', (req, res, next) => {
                     email: req.body.email,
                     username: req.body.username,
                     password: hash,
+                    activeFlashcardsSet: req.body.flashcardsSet,
                     flashcards: [],
                 });
                 newUser.save((error, user) => {
@@ -106,6 +127,7 @@ server.post('/api/login', (req, res, next) => {
                             user = {
                                 username: user.username,
                                 email: user.email,
+                                activeFlashcardsSet: user.activeFlashcardsSet,
                                 flashcards: user.flashcards,
                                 isLoggedIn: true
                             };
@@ -135,6 +157,17 @@ server.put('/api/flashcardsUpdate', checkLogin, (req, res, next) => {
     });
 });
 
+server.put('/api/activeSetUpdate', checkLogin, (req, res, next) => {
+    User.updateOne({ _id: req.session.userId }, { activeFlashcardsSet: req.body.activeFlashcardsSet }, (error, result) => {
+        if (error) {
+            console.log(error);
+            next(error);
+        } else {
+            res.send('"OK"');
+        };
+    });
+});
+
 server.get('/api/user', checkLogin, (req, res) => {
     User.findOne({ _id: req.session.userId })
         .then(user => {
@@ -145,6 +178,7 @@ server.get('/api/user', checkLogin, (req, res) => {
                 user = {
                     username: user.username,
                     email: user.email,
+                    activeFlashcardsSet: user.activeFlashcardsSet,
                     flashcards: user.flashcards,
                     isLoggedIn: true
                 };

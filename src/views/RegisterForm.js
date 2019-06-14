@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import apiCall from '../common/apiCall';
+
 class RegisterForm extends Component {
     constructor(props) {
         super(props);
@@ -8,8 +10,18 @@ class RegisterForm extends Component {
             email: '',
             username: '',
             password: '',
-            repeatPassword: ''
+            repeatPassword: '',
+            flashcardsSets: [],
+            chosenFlashcardsSet: ''
         };
+    };
+
+    componentDidMount() {
+        apiCall('/api/flashcardsSets', {}, (res, err) => {
+            if (!err) {
+                this.setState({ flashcardsSets: res, chosenFlashcardsSet: res[0]._id });
+            };
+        });
     };
 
     handleChange = (event) => {
@@ -19,13 +31,14 @@ class RegisterForm extends Component {
             case 'username': this.setState({ username: value }); break;
             case 'password': this.setState({ password: value }); break;
             case 'repeatPassword': this.setState({ repeatPassword: value }); break;
+            case 'flashcardsSet': this.setState({ chosenFlashcardsSet: value }); break;
             default: break;
         };
     };
 
     render() {
         const { search } = this.props.location;
-        const { email, password, username, repeatPassword } = this.state;
+        const { email, password, username, repeatPassword, chosenFlashcardsSet, flashcardsSets } = this.state;
         return (
             <div className='register-form'>
                 { search.search('missingFields') > -1
@@ -69,6 +82,17 @@ class RegisterForm extends Component {
                         value={ repeatPassword }
                         onChange={ this.handleChange }
                         required />
+                    Wybierz początkowy zestaw fiszek. Możesz go zmienić w każdym momencie w ustawieniach profilu.
+                    <select name='flashcardsSet' onChange={ this.handleChange } value={ chosenFlashcardsSet }>
+                        { flashcardsSets.length > 0
+                            ? flashcardsSets.map(set => {
+                                return (
+                                    <option key={ set._id } value={ set._id }>{ set.name } [{ set.lang }]</option>
+                                );
+                            })
+                            : <option>Wczytywanie zestawów fiszek...</option>
+                        }
+                    </select><br /><br />
                     <input className='button button--important' type='submit' value='Rejestracja' />
                 </form>
                 <div>

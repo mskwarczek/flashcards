@@ -77,7 +77,8 @@ class Summary extends Component {
 Summary.propTypes = {
     box: PropTypes.array,
     user: PropTypes.bool,
-    afterTest: PropTypes.bool
+    afterTest: PropTypes.bool,
+    setUserData: PropTypes.func.isRequired
 };
 
 Summary.defaultProps = {
