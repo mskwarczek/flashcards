@@ -17,6 +17,12 @@ server.use(express.static(path.join(__dirname, 'build')));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
+mongoose.connect(DATABASEURL, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    autoReconnect: true
+});
+
 server.use(session({
     name: 'session_id',
     resave: false,
@@ -29,26 +35,19 @@ server.use(session({
     }
 }));
 
+// Check if user is logged in
 const checkLogin = (req, res, next) => {
     if (!req.session.userId) {
         res.sendStatus(401);
     }
     else {
-        mongoose.connect(DATABASEURL, {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            autoReconnect: true
-        });
         next();
     };
 };
 
-server.get('/api/flashcardsSets', (req, res, next) => {
-    mongoose.connect(DATABASEURL, {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        autoReconnect: true
-    });
+// /flashcards/
+// Return all flashcards sets
+server.get('/api/flashcards', (req, res, next) => {
     FlashcardsSet.find({}, 'name _id lang', (err, docs) => {
         if (err) {
             next(err);
@@ -62,8 +61,19 @@ server.get('/api/flashcardsSets', (req, res, next) => {
     });
 });
 
-server.get('/api/flashcards', (req, res) => {
-    res.sendFile(path.join(__dirname, 'server/data/flashcards.json'));
+// Return flashcards set with given id
+server.get('/api/flashcards/:id', (req, res, next) => {
+    FlashcardsSet.findById(req.params.id, 'file', (err, docs) => {
+        if (err) {
+            next(err);
+        }
+        else if (!docs) {
+            next('No documents in database');
+        }
+        else {
+            res.sendFile(path.join(__dirname, `server/data/flashcards/${ docs.file }.json`));
+        };
+    });
 });
 
 server.post('/api/register', (req, res, next) => {
@@ -74,11 +84,6 @@ server.post('/api/register', (req, res, next) => {
         res.redirect('/register?badPassword');
     }
     else {
-        mongoose.connect(DATABASEURL, {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            autoReconnect: true
-        });
         bcrypt.hash(req.body.password, 10, (error, hash) => {
             if (error) {
                 next(error);
@@ -107,11 +112,6 @@ server.post('/api/login', (req, res, next) => {
     if (!req.body.email || !req.body.password)
         res.sendStatus(401);
     else {
-        mongoose.connect(DATABASEURL, {
-            useNewUrlParser: true,
-            useCreateIndex: true,
-            autoReconnect: true
-        });
         User.findOne({ email: req.body.email })
             .then(user => {
                 if (!user) {

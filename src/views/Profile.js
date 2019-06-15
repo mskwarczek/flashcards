@@ -38,7 +38,7 @@ class Profile extends Component {
                 };
             });
         };
-        apiCall('/api/flashcardsSets', {}, (res, err) => {
+        apiCall('/api/flashcards', {}, (res, err) => {
             if (!err) {
                 this.setState({ flashcardsSets: res });
             };

@@ -54,7 +54,7 @@ class Test extends Component {
     };
 
     getData = () => {
-        apiCall('api/flashcards', {}, (res, err) => {
+        apiCall(`api/flashcards/${this.props.user.activeFlashcardsSet}`, {}, (res, err) => {
             if (err) {
                 this.setState({ error: `Nie udało się pobrać fiszek. ${err.message}` });
             } else {
