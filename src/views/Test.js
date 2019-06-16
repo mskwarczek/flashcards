@@ -29,7 +29,7 @@ class Test extends Component {
         this.state = {
             index: 0,
             running: 0, // 0 - test not started, 1 - test running, 2 - test finished, -1 user not logged in
-            firstBoxBaseSize: this.props.user.activeFlashcardsSet.initialBoxSize || 15,
+            firstBoxBaseSize: 15,
             error: null
         };
     };
@@ -45,10 +45,12 @@ class Test extends Component {
                     };
                 } else {
                     this.props.setUserData(res);
+                    this.setState({ firstBoxBaseSize: res.activeFlashcardsSet.initialBoxSize });
                     this.getData();
                 };
             });
         } else {
+            this.setState({ firstBoxBaseSize: this.props.user.activeFlashcardsSet.initialBoxSize });
             this.getData();
         };
     };
@@ -141,6 +143,7 @@ class Test extends Component {
     };
 
     render() {
+        console.log(this.state);
         const { running, error, index } = this.state;
         if (error) {
             return (

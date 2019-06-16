@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import SetsSelect from './SetsSelect';
 import apiCall from '../common/apiCall';
 
 class RegisterForm extends Component {
@@ -83,16 +84,8 @@ class RegisterForm extends Component {
                         onChange={ this.handleChange }
                         required />
                     Wybierz początkowy zestaw fiszek. Możesz go zmienić w każdym momencie w ustawieniach profilu.
-                    <select name='flashcardsSet' onChange={ this.handleChange } value={ chosenFlashcardsSet }>
-                        { flashcardsSets.length > 0
-                            ? flashcardsSets.map(set => {
-                                return (
-                                    <option key={ set._id } value={ set._id }>{ set.name } [{ set.lang }]</option>
-                                );
-                            })
-                            : <option>Wczytywanie zestawów fiszek...</option>
-                        }
-                    </select><br /><br />
+                    <SetsSelect name='flashcardsSet' onChange={ this.handleChange } value={ chosenFlashcardsSet } sets={ flashcardsSets } />
+                    <br /><br />
                     <input className='button button--important' type='submit' value='Rejestracja' />
                 </form>
                 <div>

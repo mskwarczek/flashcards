@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import LoginRedirect from './LoginRedirect';
+import SetsSelect from './SetsSelect';
 import apiCall from '../common/apiCall';
 import { setUserData, clearUserData, resetFlashcards } from '../common/reducers/userActions';
 
@@ -23,7 +24,7 @@ class Profile extends Component {
         super(props)
         this.state = {
             flashcardsSets: [],
-            chosenFlashcardsSet: this.props.user.activeFlashcardsSet._id || '',
+            chosenFlashcardsSet: '',
             message: null
         };
     };
@@ -32,9 +33,12 @@ class Profile extends Component {
         if (this.props.user.isLoggedIn !== true) {
             apiCall('/api/user', {}, (res, err) => {
                 if (!err) {
+                    this.setState({ chosenFlashcardsSet: res.activeFlashcardsSet._id });
                     this.props.setUserData(res);
                 };
             });
+        } else {
+            this.setState({ chosenFlashcardsSet: this.props.user.activeFlashcardsSet._id });
         };
         apiCall('/api/flashcards', {}, (res, err) => {
             if (!err) {
@@ -126,20 +130,9 @@ class Profile extends Component {
                 <div>
                     <h3>Opcje konta</h3>
                     <h4>Twój aktywny zestaw fiszek</h4>
-                    <form>
-                        <select name='flashcardsSets' onChange={ this.handleChange } value={ chosenFlashcardsSet }>
-                            { flashcardsSets.length > 0
-                                ? flashcardsSets.map(set => {
-                                    return (
-                                        <option key={ set._id } value={ set._id }>{ set.name } [{ set.lang }]</option>
-                                    );
-                                })
-                                : <option>Wczytywanie zestawów fiszek...</option>
-                            }
-                        </select>
-                        <p>Możesz wybrać inny zestaw z listy. Zmiana zestawu spowoduje zresetowanie wszystkich postępów.</p>
-                        <input type='button' className='button' value='Zmień' onClick={ this.flashcardsSetUpdate } /><br />
-                    </form>
+                    <SetsSelect name='flashcardsSets' onChange={ this.handleChange } value={ chosenFlashcardsSet } sets={ flashcardsSets }/>
+                    <p>Możesz wybrać inny zestaw z listy. Zmiana zestawu spowoduje zresetowanie wszystkich postępów.</p>
+                    <input type='button' className='button' value='Zmień' onClick={ this.flashcardsSetUpdate } /><br />
                     <p>Resetowanie postępów - wszystkie fiszki nieodwracalnie wrócą poza pudełko.</p>
                     <input type='button' className='button' value='Resetuj' onClick={ this.resetFlashcards } /><br />
                 </div>
