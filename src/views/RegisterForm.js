@@ -53,7 +53,7 @@ class RegisterForm extends Component {
                     ? <p>Hasło i jego powtórzenie muszą być identyczne</p>
                     : null
                 }
-                <form action='/api/register' method='post'>
+                <form action='/api/user/register' method='post'>
                     <input className='form-input'
                         type='email'
                         name='email'

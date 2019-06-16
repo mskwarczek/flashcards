@@ -29,7 +29,7 @@ class Test extends Component {
         this.state = {
             index: 0,
             running: 0, // 0 - test not started, 1 - test running, 2 - test finished, -1 user not logged in
-            firstBoxBaseSize: 15,
+            firstBoxBaseSize: this.props.user.activeFlashcardsSet.initialBoxSize || 15,
             error: null
         };
     };
@@ -54,7 +54,7 @@ class Test extends Component {
     };
 
     getData = () => {
-        apiCall(`api/flashcards/${this.props.user.activeFlashcardsSet}`, {}, (res, err) => {
+        apiCall(`api/flashcards/${this.props.user.activeFlashcardsSet._id}`, {}, (res, err) => {
             if (err) {
                 this.setState({ error: `Nie udało się pobrać fiszek. ${err.message}` });
             } else {
@@ -120,7 +120,7 @@ class Test extends Component {
 
     sendUserData = (newData) => {
         newData = JSON.stringify(newData);
-        apiCall('/api/flashcardsUpdate', {
+        apiCall('/api/user/update', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ class Test extends Component {
         });
         newData = { ...this.props.user, flashcards: newData }
         this.props.setUserData(newData);
-        this.sendUserData({ flashcards: newData.flashcards });
+        this.sendUserData({ flashcards: newData.flashcards, activeFlashcardsSet: undefined });
         this.props.history.push('/summary');
     };
 

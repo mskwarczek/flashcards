@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
 
-import { SET_USER_DATA, CLEAR_USER_DATA, UPDATE_FLASHCARDS_SET, RESET_FLASHCARDS } from './userActions';
+import { SET_USER_DATA, CLEAR_USER_DATA, RESET_FLASHCARDS } from './userActions';
 
 const initialState = {
     username: null,
@@ -17,8 +17,6 @@ const userReducer = (state = initialState, action) => {
             return action.payload.user;
         case CLEAR_USER_DATA:
             return initialState;
-        case UPDATE_FLASHCARDS_SET:
-            return { ...state, activeFlashcardsSet: action.payload.flashcardsSet };
         case RESET_FLASHCARDS:
             return { ...state, flashcards: [] };
         default: return state;

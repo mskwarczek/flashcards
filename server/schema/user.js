@@ -20,7 +20,7 @@ let UserSchema = new mongoose.Schema({
     },
     activeFlashcardsSet: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'flashcardsSet',
+        ref: 'FlashcardsSet',
         required: true,
         unique: false
     },

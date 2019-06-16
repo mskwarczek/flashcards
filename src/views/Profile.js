@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import LoginRedirect from './LoginRedirect';
 import apiCall from '../common/apiCall';
-import { setUserData, clearUserData, updateFlashcardsSet, resetFlashcards } from '../common/reducers/userActions';
+import { setUserData, clearUserData, resetFlashcards } from '../common/reducers/userActions';
 
 const mapStateToProps = state => ({
     user: state.userReducer,
@@ -15,7 +15,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setUserData: (user) => dispatch(setUserData(user)),
     clearUserData: () => dispatch(clearUserData()),
-    updateFlashcardsSet: (flashcardsSet) => dispatch(updateFlashcardsSet(flashcardsSet)),
     resetFlashcards: () => dispatch(resetFlashcards())
 });
 
@@ -24,8 +23,7 @@ class Profile extends Component {
         super(props)
         this.state = {
             flashcardsSets: [],
-            chosenFlashcardsSet: this.props.user.activeFlashcardsSet || '',
-            displayedFlashcardsSet: '',
+            chosenFlashcardsSet: this.props.user.activeFlashcardsSet._id || '',
             message: null
         };
     };
@@ -34,7 +32,7 @@ class Profile extends Component {
         if (this.props.user.isLoggedIn !== true) {
             apiCall('/api/user', {}, (res, err) => {
                 if (!err) {
-                    this.props.user.setUserData(res);
+                    this.props.setUserData(res);
                 };
             });
         };
@@ -51,8 +49,8 @@ class Profile extends Component {
 
     flashcardsSetUpdate = () => {
         const { chosenFlashcardsSet } = this.state;
-        const newData = JSON.stringify({ activeFlashcardsSet: chosenFlashcardsSet });
-        apiCall('/api/activeSetUpdate', {
+        const newData = JSON.stringify({ activeFlashcardsSet: chosenFlashcardsSet, flashcards: [] });
+        apiCall('/api/user/update', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,15 +61,18 @@ class Profile extends Component {
                 this.setState({ message: `Coś się nie udało. ${err.message}` });
             }
             else {
-                this.props.updateFlashcardsSet(chosenFlashcardsSet);
-                this.reset();
+                apiCall('/api/user', {}, (res, err) => {
+                    if (!err) {
+                        this.props.setUserData(res);
+                    };
+                });
                 this.setState({ message: 'Operacja zakończona powodzeniem.' });
             };
         });
     };
 
     logout = () => {
-        apiCall('/api/logout', { method: 'POST' }, (res, err) => {
+        apiCall('/api/user/logout', { method: 'POST' }, (res, err) => {
             if (!err) {
                 this.props.clearUserData();
                 this.props.history.push('/');
@@ -79,9 +80,9 @@ class Profile extends Component {
         });
     };
 
-    reset = () => {
-        let newData = JSON.stringify({ flashcards: [] });
-        apiCall('/api/flashcardsUpdate', {
+    resetFlashcards = () => {
+        let newData = JSON.stringify({ activeFlashcardsSet: undefined, flashcards: [] });
+        apiCall('/api/user/update', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -140,7 +141,7 @@ class Profile extends Component {
                         <input type='button' className='button' value='Zmień' onClick={ this.flashcardsSetUpdate } /><br />
                     </form>
                     <p>Resetowanie postępów - wszystkie fiszki nieodwracalnie wrócą poza pudełko.</p>
-                    <input type='button' className='button' value='Resetuj' onClick={ this.reset } /><br />
+                    <input type='button' className='button' value='Resetuj' onClick={ this.resetFlashcards } /><br />
                 </div>
                 <div>
                 <input type='button' className='button' value='Wyloguj' onClick={ this.logout } /><br />
@@ -157,6 +158,5 @@ Profile.propTypes = {
     user: PropTypes.object.isRequired,
     setUserData: PropTypes.func.isRequired,
     clearUserData: PropTypes.func.isRequired,
-    updateFlashcardsSet: PropTypes.func.isRequired,
     resetFlashcards: PropTypes.func.isRequired
 };

@@ -30,7 +30,7 @@ class Header extends Component {
     };
 
     logout = () => {
-        apiCall('/api/logout', { method: 'POST' }, (res, err) => {
+        apiCall('/api/user/logout', { method: 'POST' }, (res, err) => {
             if (!err) {
                 this.props.clearUserData();
                 this.props.history.push('/');
