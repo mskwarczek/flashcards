@@ -1,502 +1,1102 @@
 [
-    {
+    { 
         "id": 1,
-        "front": "To be",
-        "back": "Być"
+        "front": {
+            "text": "To be",
+            "note": "To be or not to be, that is the question."
+        },
+        "back": {
+            "text": "Być",
+            "note": "Być albo nie być, oto jest pytanie."
+        }
     },
 	{
 		"id": 2,
-		"front": "To have",
-		"back": "Mieć, posiadać"
+		"front": {
+            "text": "To have",
+            "note": "To have or to be?"
+        },
+		"back": {
+            "text": "Mieć, posiadać",
+            "note": "Mieć czy być?"
+        }
 	},
 	{
 		"id": 3,
-		"front": "To do",
-		"back": "Robić"
+		"front": {
+            "text": "To do",
+            "note": "To do two things at once is to do neither."
+        },
+		"back": {
+            "text": "Robić",
+            "note": "Robić dwie rzeczy na raz, to nie robić żadnej."
+        }
 	},
 	{
 		"id": 4,
-		"front": "To say",
-		"back": "Mówić, powiedzieć"
+		"front": {
+            "text": "To say",
+            "note": "Wise people speak because they have something to say; fools because they have to say something."
+        },
+		"back": {
+            "text": "Mówić, powiedzieć",
+            "note": "Mądrzy ludzie odzywają się, ponieważ mają coś do powiedzenia; głupcy bo muszą coś powiedzieć."
+        }
 	},
 	{
 		"id": 5,
-		"front": "To go",
-		"back": "Iść, udać się"
+		"front": {
+            "text": "To go",
+            "note": ""
+        },
+		"back": {
+            "text": "Iść, udać się",
+            "note": ""
+        }
 	},
 	{
 		"id": 6,
-		"front": "To get",
-		"back": "Dostać, zdobyć"
+		"front": {
+            "text": "To get",
+            "note": ""
+        },
+		"back": {
+            "text": "Dostać, zdobyć",
+            "note": ""
+        }
 	},
 	{
 		"id": 7,
-		"front": "To make",
-		"back": "Robić, zrobić"
+		"front": {
+            "text": "To make",
+            "note": ""
+        },
+		"back": {
+            "text": "Robić, zrobić",
+            "note": ""
+        }
 	},
 	{
 		"id": 8,
-		"front": "To know",
-		"back": "Wiedzieć, znać"
+		"front": {
+            "text": "To know",
+            "note": ""
+        },
+		"back": {
+            "text": "Wiedzieć, znać",
+            "note": ""
+        }
 	},
 	{
 		"id": 9,
-		"front": "To think",
-		"back": "Myśleć"
+		"front": {
+            "text": "To think",
+            "note": ""
+        },
+		"back": {
+            "text": "Myśleć",
+            "note": ""
+        }
 	},
 	{
 		"id": 10,
-		"front": "To take",
-		"back": "Brać, przyjąć"
+		"front": {
+            "text": "To take",
+            "note": ""
+        },
+		"back": {
+            "text": "Brać, przyjąć",
+            "note": ""
+        }
 	},
 	{
 		"id": 11,
-		"front": "To see",
-		"back": "Widzieć"
+		"front": {
+            "text": "To see",
+            "note": ""
+        },
+		"back": {
+            "text": "Widzieć",
+            "note": ""
+        }
 	},
 	{
 		"id": 12,
-		"front": "To come",
-		"back": "Przyjść, przybyć"
+		"front": {
+            "text": "To come",
+            "note": ""
+        },
+		"back": {
+            "text": "Przyjść, przybyć",
+            "note": ""
+        }
 	},
 	{
 		"id": 13,
-		"front": "To want",
-		"back": "Chcieć"
+		"front": {
+            "text": "To want",
+            "note": ""
+        },
+		"back": {
+            "text": "Chcieć",
+            "note": ""
+        }
 	},
 	{
 		"id": 14,
-		"front": "To look",
-		"back": "Patrzeć, wyglądać"
+		"front": {
+            "text": "To look",
+            "note": ""
+        },
+		"back": {
+            "text": "Patrzeć, wyglądać",
+            "note": ""
+        }
 	},
 	{
 		"id": 15,
-		"front": "To use",
-		"back": "Używać"
+		"front": {
+            "text": "To use",
+            "note": ""
+        },
+		"back": {
+            "text": "Używać",
+            "note": ""
+        }
 	},
 	{
 		"id": 16,
-		"front": "To find",
-		"back": "Znaleźć"
+		"front": {
+            "text": "To find",
+            "note": ""
+        },
+		"back": {
+            "text": "Znaleźć",
+            "note": ""
+        }
 	},
 	{
 		"id": 17,
-		"front": "To give",
-		"back": "Dawać"
+		"front": {
+            "text": "To give",
+            "note": ""
+        },
+		"back": {
+            "text": "Dawać",
+            "note": ""
+        }
 	},
 	{
 		"id": 18,
-		"front": "To tell",
-		"back": "Powiedzieć"
+		"front": {
+            "text": "To tell",
+            "note": ""
+        },
+		"back": {
+            "text": "Powiedzieć",
+            "note": ""
+        }
 	},
 	{
 		"id": 19,
-		"front": "To work",
-		"back": "Pracować, działać"
+		"front": {
+            "text": "To work",
+            "note": ""
+        },
+		"back": {
+            "text": "Pracować, działać",
+            "note": ""
+        }
 	},
 	{
 		"id": 20,
-		"front": "To call",
-		"back": "Nazwać, wołać, zadzwonić"
+		"front": {
+            "text": "To call",
+            "note": ""
+        },
+		"back": {
+            "text": "Nazwać, wołać, zadzwonić",
+            "note": ""
+        }
 	},
 	{
 		"id": 21,
-		"front": "To try",
-		"back": "Próbować"
+		"front": {
+            "text": "To try",
+            "note": ""
+        },
+		"back": {
+            "text": "Próbować",
+            "note": ""
+        }
 	},
 	{
 		"id": 22,
-		"front": "To ask",
-		"back": "Pytać"
+		"front": {
+            "text": "To ask",
+            "note": ""
+        },
+		"back": {
+            "text": "Pytać",
+            "note": ""
+        }
 	},
 	{
 		"id": 23,
-		"front": "To need",
-		"back": "Potrzebować"
+		"front": {
+            "text": "To need",
+            "note": ""
+        },
+		"back": {
+            "text": "Potrzebować",
+            "note": ""
+        }
 	},
 	{
 		"id": 24,
-		"front": "To feel",
-		"back": "Czuć"
+		"front": {
+            "text": "To feel",
+            "note": ""
+        },
+		"back": {
+            "text": "Czuć",
+            "note": ""
+        }
 	},
 	{
 		"id": 25,
-		"front": "To become",
-		"back": "Stać się"
+		"front": {
+            "text": "To become",
+            "note": ""
+        },
+		"back": {
+            "text": "Stać się",
+            "note": ""
+        }
 	},
 	{
 		"id": 26,
-		"front": "To leave",
-		"back": "Odejść, wyjść"
+		"front": {
+            "text": "To leave",
+            "note": ""
+        },
+		"back": {
+            "text": "Odejść, wyjść",
+            "note": ""
+        }
 	},
 	{
 		"id": 27,
-		"front": "To put",
-		"back": "Umieścić, wsadzić"
+		"front": {
+            "text": "To put",
+            "note": ""
+        },
+		"back": {
+            "text": "Umieścić, wsadzić",
+            "note": ""
+        }
 	},
 	{
 		"id": 28,
-		"front": "To mean",
-		"back": "Znaczyć"
+		"front": {
+            "text": "To mean",
+            "note": ""
+        },
+		"back": {
+            "text": "Znaczyć",
+            "note": ""
+        }
 	},
 	{
 		"id": 29,
-		"front": "To keep",
-		"back": "Trzymać, zachować"
+		"front": {
+            "text": "To keep",
+            "note": ""
+        },
+		"back": {
+            "text": "Trzymać, zachować",
+            "note": ""
+        }
 	},
 	{
 		"id": 30,
-		"front": "To let",
-		"back": "Pozwolić"
+		"front": {
+            "text": "To let",
+            "note": ""
+        },
+		"back": {
+            "text": "Pozwolić",
+            "note": ""
+        }
 	},
 	{
 		"id": 31,
-		"front": "To begin",
-		"back": "Zaczynać"
+		"front": {
+            "text": "To begin",
+            "note": ""
+        },
+		"back": {
+            "text": "Zaczynać",
+            "note": ""
+        }
 	},
 	{
 		"id": 32,
-		"front": "To seem",
-		"back": "Wydawać się"
+		"front": {
+            "text": "To seem",
+            "note": ""
+        },
+		"back": {
+            "text": "Wydawać się",
+            "note": ""
+        }
 	},
 	{
 		"id": 33,
-		"front": "To help",
-		"back": "Pomóc"
+		"front": {
+            "text": "To help",
+            "note": ""
+        },
+		"back": {
+            "text": "Pomóc",
+            "note": ""
+        }
 	},
 	{
 		"id": 34,
-		"front": "To talk",
-		"back": "Rozmawiać, mówić"
+		"front": {
+            "text": "To talk",
+            "note": ""
+        },
+		"back": {
+            "text": "Rozmawiać, mówić",
+            "note": ""
+        }
 	},
 	{
 		"id": 35,
-		"front": "To turn",
-		"back": "Obrócić, odwrócić"
+		"front": {
+            "text": "To turn",
+            "note": ""
+        },
+		"back": {
+            "text": "Obrócić, odwrócić",
+            "note": ""
+        }
 	},
 	{
 		"id": 36,
-		"front": "To start",
-		"back": "Zacząć"
+		"front": {
+            "text": "To start",
+            "note": ""
+        },
+		"back": {
+            "text": "Zacząć",
+            "note": ""
+        }
 	},
 	{
 		"id": 37,
-		"front": "To show",
-		"back": "Pokazać"
+		"front": {
+            "text": "To show",
+            "note": ""
+        },
+		"back": {
+            "text": "Pokazać",
+            "note": ""
+        }
 	},
 	{
 		"id": 38,
-		"front": "To hear",
-		"back": "Usłyszeć, słyszeć"
+		"front": {
+            "text": "To hear",
+            "note": ""
+        },
+		"back": {
+            "text": "Słyszeć, usłyszeć",
+            "note": ""
+        }
 	},
 	{
 		"id": 39,
-		"front": "To play",
-		"back": "Grać, bawić się"
+		"front": {
+            "text": "To play",
+            "note": ""
+        },
+		"back": {
+            "text": "Grać, bawić się",
+            "note": ""
+        }
 	},
 	{
 		"id": 40,
-		"front": "To run",
-		"back": "Biegać"
+		"front": {
+            "text": "To run",
+            "note": ""
+        },
+		"back": {
+            "text": "Biegać",
+            "note": ""
+        }
 	},
 	{
 		"id": 41,
-		"front": "To move",
-		"back": "Przenieść, poruszać"
+		"front": {
+            "text": "To move",
+            "note": ""
+        },
+		"back": {
+            "text": "Przenieść, poruszać",
+            "note": ""
+        }
 	},
 	{
 		"id": 42,
-		"front": "To like",
-		"back": "Lubić"
+		"front": {
+            "text": "To like",
+            "note": ""
+        },
+		"back": {
+            "text": "Lubić",
+            "note": ""
+        }
 	},
 	{
 		"id": 43,
-		"front": "To live",
-		"back": "Żyć"
+		"front": {
+            "text": "To live",
+            "note": ""
+        },
+		"back": {
+            "text": "Żyć",
+            "note": ""
+        }
 	},
 	{
 		"id": 44,
-		"front": "To believe",
-		"back": "Wierzyć"
+		"front": {
+            "text": "To believe",
+            "note": ""
+        },
+		"back": {
+            "text": "Wierzyć",
+            "note": ""
+        }
 	},
 	{
 		"id": 45,
-		"front": "To hold",
-		"back": "Trzymać, zmieścić"
+		"front": {
+            "text": "To hold",
+            "note": ""
+        },
+		"back": {
+            "text": "Trzymać, zmieścić",
+            "note": ""
+        }
 	},
 	{
 		"id": 46,
-		"front": "To bring",
-		"back": "Przynieść"
+		"front": {
+            "text": "To bring",
+            "note": ""
+        },
+		"back": {
+            "text": "Przynieść",
+            "note": ""
+        }
 	},
 	{
 		"id": 47,
-		"front": "To happen",
-		"back": "Wydarzyć się"
+		"front": {
+            "text": "To happen",
+            "note": ""
+        },
+		"back": {
+            "text": "Wydarzyć się",
+            "note": ""
+        }
 	},
 	{
 		"id": 48,
-		"front": "To write",
-		"back": "Pisać"
+		"front": {
+            "text": "To write",
+            "note": ""
+        },
+		"back": {
+            "text": "Pisać",
+            "note": ""
+        }
 	},
 	{
 		"id": 49,
-		"front": "To provide",
-		"back": "Zapewniać, dostarczać"
+		"front": {
+            "text": "To provide",
+            "note": ""
+        },
+		"back": {
+            "text": "Zapewniać, dostarczać",
+            "note": ""
+        }
 	},
 	{
 		"id": 50,
-		"front": "To sit",
-		"back": "Siedzieć"
+		"front": {
+            "text": "To sit",
+            "note": ""
+        },
+		"back": {
+            "text": "Siedzieć",
+            "note": ""
+        }
 	},
 	{
 		"id": 51,
-		"front": "To stand",
-		"back": "Stać"
+		"front": {
+            "text": "To stand",
+            "note": ""
+        },
+		"back": {
+            "text": "Stać, wstać",
+            "note": ""
+        }
 	},
 	{
 		"id": 52,
-		"front": "To lose",
-		"back": "Przegrać"
+		"front": {
+            "text": "To lose",
+            "note": ""
+        },
+		"back": {
+            "text": "Przegrać",
+            "note": ""
+        }
 	},
 	{
 		"id": 53,
-		"front": "To pay",
-		"back": "Płacić"
+		"front": {
+            "text": "To pay",
+            "note": ""
+        },
+		"back": {
+            "text": "Płacić",
+            "note": ""
+        }
 	},
 	{
 		"id": 54,
-		"front": "To meet",
-		"back": "Spotkać, poznać"
+		"front": {
+            "text": "To meet",
+            "note": ""
+        },
+		"back": {
+            "text": "Spotkać, poznać",
+            "note": ""
+        }
 	},
 	{
 		"id": 55,
-		"front": "To include",
-		"back": "Zawrzeć, uwzględniać"
+		"front": {
+            "text": "To include",
+            "note": ""
+        },
+		"back": {
+            "text": "Zawrzeć, uwzględniać",
+            "note": ""
+        }
 	},
 	{
 		"id": 56,
-		"front": "To continue",
-		"back": "Kontynuować"
+		"front": {
+            "text": "To continue",
+            "note": ""
+        },
+		"back": {
+            "text": "Kontynuować",
+            "note": ""
+        }
 	},
 	{
 		"id": 57,
-		"front": "To set",
-		"back": "Ustawić, określić"
+		"front": {
+            "text": "To set",
+            "note": ""
+        },
+		"back": {
+            "text": "Ustawić, określić",
+            "note": ""
+        }
 	},
 	{
 		"id": 58,
-		"front": "To learn",
-		"back": "Uczyć się"
+		"front": {
+            "text": "To learn",
+            "note": ""
+        },
+		"back": {
+            "text": "Uczyć się",
+            "note": ""
+        }
 	},
 	{
 		"id": 59,
-		"front": "To change",
-		"back": "Zmienić"
+		"front": {
+            "text": "To change",
+            "note": ""
+        },
+		"back": {
+            "text": "Zmienić",
+            "note": ""
+        }
 	},
 	{
 		"id": 60,
-		"front": "To lead",
-		"back": "Prowadzić, przewodzić"
+		"front": {
+            "text": "To lead",
+            "note": ""
+        },
+		"back": {
+            "text": "Prowadzić, przewodzić",
+            "note": ""
+        }
 	},
 	{
 		"id": 61,
-		"front": "To understand",
-		"back": "Rozumieć"
+		"front": {
+            "text": "To understand",
+            "note": ""
+        },
+		"back": {
+            "text": "Rozumieć",
+            "note": ""
+        }
 	},
 	{
 		"id": 62,
-		"front": "To watch",
-		"back": "Oglądać, obserwować"
+		"front": {
+            "text": "To watch",
+            "note": ""
+        },
+		"back": {
+            "text": "Oglądać, obserwować",
+            "note": ""
+        }
 	},
 	{
 		"id": 63,
-		"front": "To follow",
-		"back": "Podążać, śledzić"
+		"front": {
+            "text": "To follow",
+            "note": ""
+        },
+		"back": {
+            "text": "Podążać, śledzić",
+            "note": ""
+        }
 	},
 	{
 		"id": 64,
-		"front": "To stop",
-		"back": "Zatrzymać, przestać"
+		"front": {
+            "text": "To stop",
+            "note": ""
+        },
+		"back": {
+            "text": "Zatrzymać, przestać",
+            "note": ""
+        }
 	},
 	{
 		"id": 65,
-		"front": "To create",
-		"back": "Stworzyć"
+		"front": {
+            "text": "To create",
+            "note": ""
+        },
+		"back": {
+            "text": "Stworzyć",
+            "note": ""
+        }
 	},
 	{
 		"id": 66,
-		"front": "To speak",
-		"back": "Mówić"
+		"front": {
+            "text": "To speak",
+            "note": ""
+        },
+		"back": {
+            "text": "Mówić",
+            "note": ""
+        }
 	},
 	{
 		"id": 67,
-		"front": "To read",
-		"back": "Czytać"
+		"front": {
+            "text": "To read",
+            "note": ""
+        },
+		"back": {
+            "text": "Czytać",
+            "note": ""
+        }
 	},
 	{
 		"id": 68,
-		"front": "To allow",
-		"back": "Pozwolić"
+		"front": {
+            "text": "To allow",
+            "note": ""
+        },
+		"back": {
+            "text": "Pozwolić",
+            "note": ""
+        }
 	},
 	{
 		"id": 69,
-		"front": "To add",
-		"back": "Dodać"
+		"front": {
+            "text": "To add",
+            "note": ""
+        },
+		"back": {
+            "text": "Dodać",
+            "note": ""
+        }
 	},
 	{
 		"id": 70,
-		"front": "To spend",
-		"back": "Wydać"
+		"front": {
+            "text": "To spend",
+            "note": ""
+        },
+		"back": {
+            "text": "Wydać",
+            "note": ""
+        }
 	},
 	{
 		"id": 71,
-		"front": "To grow",
-		"back": "Rosnąć, hodować"
+		"front": {
+            "text": "To grow",
+            "note": ""
+        },
+		"back": {
+            "text": "Rosnąć",
+            "note": ""
+        }
 	},
 	{
 		"id": 72,
-		"front": "To open",
-		"back": "Otwierać"
+		"front": {
+            "text": "To open",
+            "note": ""
+        },
+		"back": {
+            "text": "Otwierać",
+            "note": ""
+        }
 	},
 	{
 		"id": 73,
-		"front": "To walk",
-		"back": "Iść"
+		"front": {
+            "text": "To walk",
+            "note": ""
+        },
+		"back": {
+            "text": "Iść",
+            "note": ""
+        }
 	},
 	{
 		"id": 74,
-		"front": "To win",
-		"back": "Wygrać"
+		"front": {
+            "text": "To win",
+            "note": ""
+        },
+		"back": {
+            "text": "Wygrać",
+            "note": ""
+        }
 	},
 	{
 		"id": 75,
-		"front": "To offer",
-		"back": "Zaproponować"
+		"front": {
+            "text": "To offer",
+            "note": ""
+        },
+		"back": {
+            "text": "Zaproponować",
+            "note": ""
+        }
 	},
 	{
 		"id": 76,
-		"front": "To remember",
-		"back": "Pamiętać, zapamiętać"
+		"front": {
+            "text": "To remember",
+            "note": ""
+        },
+		"back": {
+            "text": "Pamiętać, zapamiętać",
+            "note": ""
+        }
 	},
 	{
 		"id": 77,
-		"front": "To love",
-		"back": "Kochać"
+		"front": {
+            "text": "To love",
+            "note": ""
+        },
+		"back": {
+            "text": "Kochać",
+            "note": ""
+        }
 	},
 	{
 		"id": 78,
-		"front": "To consider",
-		"back": "Rozważać, brać pod uwagę"
+		"front": {
+            "text": "To consider",
+            "note": ""
+        },
+		"back": {
+            "text": "Rozważać, brać pod uwagę",
+            "note": ""
+        }
 	},
 	{
 		"id": 79,
-		"front": "To appear",
-		"back": "Pojawić się"
+		"front": {
+            "text": "To appear",
+            "note": ""
+        },
+		"back": {
+            "text": "Pojawić się",
+            "note": ""
+        }
 	},
 	{
 		"id": 80,
-		"front": "To buy",
-		"back": "Kupić"
+		"front": {
+            "text": "To buy",
+            "note": ""
+        },
+		"back": {
+            "text": "Kupić",
+            "note": ""
+        }
 	},
 	{
 		"id": 81,
-		"front": "To wait",
-		"back": "Czekać"
+		"front": {
+            "text": "To wait",
+            "note": ""
+        },
+		"back": {
+            "text": "Czekać",
+            "note": ""
+        }
 	},
 	{
 		"id": 82,
-		"front": "To serve",
-		"back": "Służyć, obsługiwać"
+		"front": {
+            "text": "To serve",
+            "note": ""
+        },
+		"back": {
+            "text": "Służyć, obsługiwać",
+            "note": ""
+        }
 	},
 	{
 		"id": 83,
-		"front": "To die",
-		"back": "Umrzeć"
+		"front": {
+            "text": "To die",
+            "note": ""
+        },
+		"back": {
+            "text": "Umrzeć",
+            "note": ""
+        }
 	},
 	{
 		"id": 84,
-		"front": "To send",
-		"back": "Wysłać"
+		"front": {
+            "text": "To send",
+            "note": ""
+        },
+		"back": {
+            "text": "Wysłać",
+            "note": ""
+        }
 	},
 	{
 		"id": 85,
-		"front": "To expect",
-		"back": "Oczekiwać"
+		"front": {
+            "text": "To expect",
+            "note": ""
+        },
+		"back": {
+            "text": "Oczekiwać",
+            "note": ""
+        }
 	},
 	{
 		"id": 86,
-		"front": "To build",
-		"back": "Budować"
+		"front": {
+            "text": "To build",
+            "note": ""
+        },
+		"back": {
+            "text": "Budować",
+            "note": ""
+        }
 	},
 	{
 		"id": 87,
-		"front": "To stay",
-		"back": "Zostać"
+		"front": {
+            "text": "To stay",
+            "note": ""
+        },
+		"back": {
+            "text": "Zostać",
+            "note": ""
+        }
 	},
 	{
 		"id": 88,
-		"front": "To fall",
-		"back": "Upaść"
+		"front": {
+            "text": "To fall",
+            "note": ""
+        },
+		"back": {
+            "text": "Upaść",
+            "note": ""
+        }
 	},
 	{
 		"id": 89,
-		"front": "To cut",
-		"back": "Ciąć"
+		"front": {
+            "text": "To cut",
+            "note": ""
+        },
+		"back": {
+            "text": "Ciąć",
+            "note": ""
+        }
 	},
 	{
 		"id": 90,
-		"front": "To reach",
-		"back": "Dosięgnąć"
+		"front": {
+            "text": "To reach",
+            "note": ""
+        },
+		"back": {
+            "text": "Dosięgnąć",
+            "note": ""
+        }
 	},
 	{
 		"id": 91,
-		"front": "To kill",
-		"back": "Zabić"
+		"front": {
+            "text": "To kill",
+            "note": ""
+        },
+		"back": {
+            "text": "Zabić",
+            "note": ""
+        }
 	},
 	{
 		"id": 92,
-		"front": "To remain",
-		"back": "Pozostać"
+		"front": {
+            "text": "To remain",
+            "note": ""
+        },
+		"back": {
+            "text": "Pozostać",
+            "note": ""
+        }
 	},
 	{
 		"id": 93,
-		"front": "To suggest",
-		"back": "Proponować"
+		"front": {
+            "text": "To suggest",
+            "note": ""
+        },
+		"back": {
+            "text": "Proponować",
+            "note": ""
+        }
 	},
 	{
 		"id": 94,
-		"front": "To raise",
-		"back": "Podnieść"
+		"front": {
+            "text": "To raise",
+            "note": ""
+        },
+		"back": {
+            "text": "Podnieść",
+            "note": ""
+        }
 	},
 	{
 		"id": 95,
-		"front": "To pass",
-		"back": "Zdać, przejść"
+		"front": {
+            "text": "To pass",
+            "note": ""
+        },
+		"back": {
+            "text": "Zdać, przejść",
+            "note": ""
+        }
 	},
 	{
 		"id": 96,
-		"front": "To sell",
-		"back": "Sprzedać"
+		"front": {
+            "text": "To sell",
+            "note": ""
+        },
+		"back": {
+            "text": "Sprzedać",
+            "note": ""
+        }
 	},
 	{
 		"id": 97,
-		"front": "To require",
-		"back": "Wymagać"
+		"front": {
+            "text": "To require",
+            "note": ""
+        },
+		"back": {
+            "text": "Wymagać",
+            "note": ""
+        }
 	},
 	{
 		"id": 98,
-		"front": "To report",
-		"back": "Zgłosić"
+		"front": {
+            "text": "To report",
+            "note": ""
+        },
+		"back": {
+            "text": "Zgłosić",
+            "note": ""
+        }
 	},
 	{
 		"id": 99,
-		"front": "To decide",
-		"back": "Zdecydować"
+		"front": {
+            "text": "To decide",
+            "note": ""
+        },
+		"back": {
+            "text": "Zdecydować",
+            "note": ""
+        }
 	},
 	{
 		"id": 100,
-		"front": "To pull",
-		"back": "Ciągnąć"
+		"front": {
+            "text": "To pull",
+            "note": ""
+        },
+		"back": {
+            "text": "Ciągnąć",
+            "note": ""
+        }
 	}
 ]

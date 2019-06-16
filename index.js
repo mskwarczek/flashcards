@@ -46,7 +46,7 @@ const checkLogin = (req, res, next) => {
 // /flashcards/
 // Return all flashcards sets
 server.get('/api/flashcards', (req, res, next) => {
-    FlashcardsSet.find({}, 'name _id lang', (err, docs) => {
+    FlashcardsSet.find({}, 'name _id lang isReverse', (err, docs) => {
         if (err) {
             return next(new Error(err));
         }

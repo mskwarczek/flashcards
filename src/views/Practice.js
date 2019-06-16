@@ -11,6 +11,7 @@ class Practice extends Component {
         this.state = {
             sets: [],
             activeSet: '',
+            isReverse: false,
             cards: [],
             activeCard: 0,
             error: null
@@ -26,7 +27,7 @@ class Practice extends Component {
                     if (err) {
                         this.setState({ error: `Nie udało się pobrać fiszek. ${err.message}` });
                     } else {
-                        this.setState({ sets: res, activeSet: res[0]._id, cards});
+                        this.setState({ sets: res, activeSet: res[0]._id, isReverse: res[0].isReverse, cards });
                     };
                 });
             };
@@ -35,11 +36,12 @@ class Practice extends Component {
 
     handleChange = (event) => {
         const id = event.target.value;
+        const reverse = this.state.sets.filter(set => set._id === id)[0].isReverse;
         apiCall(`api/flashcards/${id}`, {}, (cards, err) => {
             if (err) {
                 this.setState({ error: `Nie udało się pobrać fiszek. ${err.message}` });
             } else {
-                this.setState({ activeSet: id, cards });
+                this.setState({ activeSet: id, isReverse: reverse, cards });
             };
         });
     };
@@ -49,8 +51,7 @@ class Practice extends Component {
     };
 
     render() {
-        const { sets, activeSet, cards, activeCard, error } = this.state;
-        console.log(this.state);
+        const { sets, activeSet, isReverse, cards, activeCard, error } = this.state;
         if (error) {
             return (
                 <div>
@@ -69,7 +70,7 @@ class Practice extends Component {
                     </div>
                     { cards.length > 0 
                         ? <div className='practice'>
-                            <Card card={ cards[activeCard] } nextCard={ this.nextCard } />
+                            <Card card={ cards[activeCard] } nextCard={ this.nextCard } reverse={ isReverse }/>
                             <NavLink to='/home' className='button'>Zakończ</NavLink>
                         </div>
                         : <div>

@@ -30,6 +30,7 @@ class Test extends Component {
             index: 0,
             running: 0, // 0 - test not started, 1 - test running, 2 - test finished, -1 user not logged in
             firstBoxBaseSize: 15,
+            isReverse: false,
             error: null
         };
     };
@@ -45,12 +46,18 @@ class Test extends Component {
                     };
                 } else {
                     this.props.setUserData(res);
-                    this.setState({ firstBoxBaseSize: res.activeFlashcardsSet.initialBoxSize });
+                    this.setState({ 
+                        firstBoxBaseSize: res.activeFlashcardsSet.initialBoxSize,
+                        isReverse: res.activeFlashcardsSet.isReverse
+                    });
                     this.getData();
                 };
             });
         } else {
-            this.setState({ firstBoxBaseSize: this.props.user.activeFlashcardsSet.initialBoxSize });
+            this.setState({ 
+                firstBoxBaseSize: this.props.user.activeFlashcardsSet.initialBoxSize,
+                isReverse: this.props.user.activeFlashcardsSet.isReverse
+             });
             this.getData();
         };
     };
@@ -143,8 +150,7 @@ class Test extends Component {
     };
 
     render() {
-        console.log(this.state);
-        const { running, error, index } = this.state;
+        const { isReverse, running, error, index } = this.state;
         if (error) {
             return (
                 <div>
@@ -164,6 +170,7 @@ class Test extends Component {
                         <Card
                             card={ this.props.cards[index] }
                             test={ true }
+                            reverse = { isReverse }
                             pushForward={ this.pushForward }
                             pushBackward={ this.pushBackward } />
                         <ProgressBar
