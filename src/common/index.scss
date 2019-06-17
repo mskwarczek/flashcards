@@ -497,3 +497,38 @@ a {
         }
     }
 }
+
+// SetsSelect component
+.select-container {
+    padding: 0;
+
+    select {
+        font-family: 'Open Sans', sans-serif;
+        padding: .2em 0;
+        margin: .5em auto 0;
+        border: .1em solid $color-basic2;
+        border-radius: .5em;
+        outline: none;
+        max-width: 100%;
+        font-size: .9em;
+        @include small {
+            font-size: .8em;
+        }
+    
+        &:hover,
+        &:focus {
+            border-color: $color-active;
+        }
+    
+        option {
+            word-wrap: break-word;
+        }
+    }
+
+    .small-screen-info {
+        display: none;
+        @include medium {
+            display: inline;
+        }
+    }
+}

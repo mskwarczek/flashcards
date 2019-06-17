@@ -1,0 +1,306 @@
+[
+    { 
+        "id": 1,
+        "front": {
+            "text": "Początki współczesnej medycyny",
+            "note": "łac. 'primum non nocere' – po pierwsze nie szkodzić"
+        },
+        "back": {
+            "text": "Hipokrates, ok. V-IV w. p.n.e., starożytna Grecja",
+            "note": "łac. 'primum non nocere' – po pierwsze nie szkodzić"
+        }
+    },
+    { 
+        "id": 2,
+        "front": {
+            "text": "Powstanie geometrii aksjomatycznej",
+            "note": "Dzieło 'Elementy' (gr. 'Stoicheia')"
+        },
+        "back": {
+            "text": "Euklides, ok. 323–283 p.n.e., starożytna Grecja",
+            "note": "Dzieło 'Elementy' (gr. 'Stoicheia')"
+        }
+    },
+    { 
+        "id": 3,
+        "front": {
+            "text": "Pierwsze propozycje heliocentrycznego modelu Układu Słonecznego"
+        },
+        "back": {
+            "text": "Arystarch z Samos, ok. 280 p.n.e., starożytna Grecja"
+        }
+    },
+    { 
+        "id": 4,
+        "front": {
+            "text": "Pierwszy pomiar obwodu Ziemi",
+            "note": "Początki współczesnej geografii"
+        },
+        "back": {
+            "text": "Eratostenes, ok. 240-230 p.n.e., starożytna Grecja",
+            "note": "Początki współczesnej geografii"
+        }
+    },
+    { 
+        "id": 5,
+        "front": {
+            "text": "Teoria geocentryczna",
+            "note": "Dzieło 'Almagest' ('Mathematike Syntaxis')"
+        },
+        "back": {
+            "text": "Ptolemeusz, ok. 150 r., starożytna Grecja, Rzym",
+            "note": "Dzieło 'Almagest' ('Mathematike Syntaxis')"
+        }
+    },
+    { 
+        "id": 6,
+        "front": {
+            "text": "Teoria heliocentryczna",
+            "note": "Dzieło 'O obrotach sfer niebieskich' (łac. 'De revolutionibus orbium coelestium')"
+        },
+        "back": {
+            "text": "Mikołaj Kopernik, 1543 r., Polska, Niemcy",
+            "note": "Dzieło 'O obrotach sfer niebieskich' (łac. 'De revolutionibus orbium coelestium')"
+        }
+    },
+    { 
+        "id": 7,
+        "front": {
+            "text": "Trzy prawa o ruchach planet"
+        },
+        "back": {
+            "text": "Jan Kepler, 1609 (I i II), 1619 (III) r., Niemcy"
+        }
+    },
+    { 
+        "id": 8,
+        "front": {
+            "text": "Współczesna filozofia i metoda naukowa",
+            "note": "Dzieło 'Rozprawa o metodzie': łac. 'cogito ergo sum' – myślę, więc jestem"
+        },
+        "back": {
+            "text": "René Descartes (Kartezjusz), 1637 r., Francja, Holandia",
+            "note": "Dzieło 'Rozprawa o metodzie': łac. 'cogito ergo sum' – myślę, więc jestem"
+        }
+    },
+    { 
+        "id": 9,
+        "front": {
+            "text": "Prawo powszechnego ciążenia i trzy zasady dynamiki",
+            "note": "Dzieło 'Matematyczne zasady filozofii naturalnej' (łac. 'Philosophiae naturalis principia mathematica')"
+        },
+        "back": {
+            "text": "Isaac Newton, 1687 r., Anglia",
+            "note": "Dzieło 'Matematyczne zasady filozofii naturalnej' (łac. 'Philosophiae naturalis principia mathematica')"
+        }
+    },
+    { 
+        "id": 10,
+        "front": {
+            "text": "Teoria ewolucji",
+            "note": "Dzieło 'O powstawaniu gatunków' (ang. 'On the Origin of Species')"
+        },
+        "back": {
+            "text": "Karol Darwin, 1859 r., Anglia",
+            "note": "Dzieło 'O powstawaniu gatunków' (ang. 'On the Origin of Species')"
+        }
+    },
+    { 
+        "id": 11,
+        "front": {
+            "text": "Pasteryzacja",
+            "note": "Ojciec mikrobiologii"
+        },
+        "back": {
+            "text": "Ludwik Pasteur, 1863 r., Francja",
+            "note": "Ojciec mikrobiologii"
+        }
+    },
+    { 
+        "id": 12,
+        "front": {
+            "text": "Teoria elektromagnetyzmu"
+        },
+        "back": {
+            "text": "James Clerk Maxwell, 1864 r., Szkocja"
+        }
+    },
+    { 
+        "id": 13,
+        "front": {
+            "text": "Pierwsze szczepionki",
+            "note": "Ojciec mikrobiologii"
+        },
+        "back": {
+            "text": "Ludwik Pasteur, 1885 r., Francja",
+            "note": "Ojciec mikrobiologii"
+        }
+    },
+    { 
+        "id": 14,
+        "front": {
+            "text": "Szczególna i Ogólna Teoria Względności",
+            "note": "E=mc2"
+        },
+        "back": {
+            "text": "Albert Einstein, 1905 (STW) 1915 r. (OTW), Niemcy, Szwajcaria",
+            "note": "E=mc2"
+        }
+    },
+    { 
+        "id": 15,
+        "front": {
+            "text": "Odkrycie penicyliny"
+        },
+        "back": {
+            "text": "Alexander Fleming, 1928 r., Anglia"
+        }
+    },
+    { 
+        "id": 16,
+        "front": {
+            "text": "Odkrycie pierwszych planet pozasłonecznych"
+        },
+        "back": {
+            "text": "Aleksander Wolszczan, 1992 r., Polska"
+        }
+    },
+    { 
+        "id": 17,
+        "front": {
+            "text": "Wynalezienie koła"
+        },
+        "back": {
+            "text": "Cywilizacja sumeryjska, IV tysiąclecie p.n.e., Mezopotamia"
+        }
+    },
+    { 
+        "id": 18,
+        "front": {
+            "text": "Wynalezienie prochu"
+        },
+        "back": {
+            "text": "Alchemicy taoistyczni, IX w., Chiny"
+        }
+    },
+    { 
+        "id": 19,
+        "front": {
+            "text": "Wynalezienie papieru"
+        },
+        "back": {
+            "text": "Ts'ai Lun, 105 r., Chiny"
+        }
+    },
+    { 
+        "id": 20,
+        "front": {
+            "text": "Wynalezienie prasy drukarskiej"
+        },
+        "back": {
+            "text": "Johannes Gutenberg, 1440-1450 r., Niemcy"
+        }
+    },
+    { 
+        "id": 21,
+        "front": {
+            "text": "Pierwsze obserwacje astronomiczne przez teleskop",
+            "note": "Dzieło 'Sidereus Nuncius' o czterech księżycach Jowisza i powierzchni Księżyca"
+        },
+        "back": {
+            "text": "Galileo Galilei (Galileusz), 1610 r., Włochy",
+            "note": "Dzieło 'Sidereus Nuncius' o czterech księżycach Jowisza i powierzchni Księżyca"
+        }
+    },
+    { 
+        "id": 22,
+        "front": {
+            "text": "Odkrycie rachunku różniczkowego"
+        },
+        "back": {
+            "text": "Isaac Newton, Gottfried Leibniz (niezależnie), 1675 r., Anglia (Newton), Niemcy (Leibniz)"
+        }
+    },
+    { 
+        "id": 23,
+        "front": {
+            "text": "Odkrycie i opisanie zjawiska dyfrakcji i refrakcji światła",
+            "note": "Dzieło 'Opticks'"
+        },
+        "back": {
+            "text": "Isaac Newton, 1704 r., Anglia",
+            "note": "Dzieło 'Opticks'"
+        }
+    },
+    { 
+        "id": 24,
+        "front": {
+            "text": "Wynalezienie silnika parowego",
+            "note": "Udoskonalony wynalazek Thomasa Saverya z 1698 roku"
+        },
+        "back": {
+            "text": "James Watt, 1763 r., Szkocja",
+            "note": "Udoskonalony wynalazek Thomasa Saverya z 1698 roku"
+        }
+    },
+    { 
+        "id": 25,
+        "front": {
+            "text": "Szczepienia ochronne",
+            "note": "Użycie ospy krowiej do ochrony ludzi przed zachorowaniem"
+        },
+        "back": {
+            "text": "Edward Jenner, 1796 r., Anglia",
+            "note": "Użycie ospy krowiej do ochrony ludzi przed zachorowaniem"
+        }
+    },
+    { 
+        "id": 26,
+        "front": {
+            "text": "Wyznaczenie stałej grawitacji G",
+            "note": "Eksperyment z użyciem wagi skręceń"
+        },
+        "back": {
+            "text": "Henry Cavendish, 1798 r., Anglia",
+            "note": "Eksperyment z użyciem wagi skręceń"
+        }
+    },
+    { 
+        "id": 27,
+        "front": {
+            "text": "Pierwsza bateria elektryczna"
+        },
+        "back": {
+            "text": "Alessandro Volta, 1800 r., Włochy"
+        }
+    },
+    { 
+        "id": 28,
+        "front": {
+            "text": "Pierwszy spalinowy silnik czterosuwowy"
+        },
+        "back": {
+            "text": "Nikolaus Otto, 1876 r., Niemcy"
+        }
+    },
+    { 
+        "id": 29,
+        "front": {
+            "text": "Wynalezienie samolotu",
+            "note": "Lot trwający 59 sekund na dystansie 259,6 metrów"
+        },
+        "back": {
+            "text": "Wilbur i Orville Wright, 1903 r., U.S.A",
+            "note": "Lot trwający 59 sekund na dystansie 259,6 metrów"
+        }
+    },
+    { 
+        "id": 30,
+        "front": {
+            "text": "Prawo o rozszczerzającym się wszechświecie"
+        },
+        "back": {
+            "text": "Edwin Hubble, 1929 r., U.S.A"
+        }
+    }
+]

@@ -14,7 +14,7 @@ You will need to change ./server/data/dburl-template.json to an real mongoDB con
 The same applies to ./server/data/secret_key-template.json which is used to generate cookies.
 Both files are required by ./index.js.
 
-There is only one set of flashcards avalievable at this point, but you may switch them to your own as long as they follow the same schema as in original ./server/data/flashcards.json.
+There are two sets of flashcards avalievable at this point, but you may switch them to your own as long as they follow the same schema as original sets.
 
 Type `npm run dev` in the project directory to run this app in development mode.
 

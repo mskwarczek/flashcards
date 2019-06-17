@@ -77,8 +77,12 @@ class Test extends Component {
         cards = this.fillFirstBox(cards);
         cards.sort((a, b) => b.box - a.box);
         this.props.fillCardsArray(cards);
-        this.setState({ running: 1, index: cards.filter(elem => elem.box >= 6).length });
-        return true;
+        let newIndex = cards.filter(elem => elem.box >= 6).length
+        if (this.props.cards.length > newIndex) {
+            this.setState({ running: 1, index: newIndex });
+        } else {
+            this.setState({ error: 'W wybranym zestawie nie ma więcej fiszek do nauki. Wszystkie już umiesz! Wybierz nowy zestaw lub zresetuj postępy w ustwieniach swojego profilu.' });
+        };
     };
 
     combineUserWithCards = (cards) => {
@@ -154,7 +158,8 @@ class Test extends Component {
         if (error) {
             return (
                 <div>
-                    { error }<br />
+                    <h2>Test</h2>
+                    <p>{ error }</p><br />
                     <NavLink to='/home' className='button'>Powrót</NavLink>
                 </div>
             );

@@ -83,7 +83,7 @@ class RegisterForm extends Component {
                         value={ repeatPassword }
                         onChange={ this.handleChange }
                         required />
-                    Wybierz początkowy zestaw fiszek. Możesz go zmienić w każdym momencie w ustawieniach profilu.
+                    <label>Wybierz początkowy zestaw fiszek. Możesz go zmienić w każdym momencie w ustawieniach profilu.</label><br />
                     <SetsSelect name='flashcardsSet' onChange={ this.handleChange } value={ chosenFlashcardsSet } sets={ flashcardsSets } />
                     <br /><br />
                     <input className='button button--important' type='submit' value='Rejestracja' />
