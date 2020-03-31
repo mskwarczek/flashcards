@@ -121,6 +121,12 @@ a {
         margin: .1em;
     }
 
+    &--lang {
+        width: 3em;
+        height: 2em;
+        margin: .1em;
+    }
+
     &--important {
         background-color: $color-basic2;
         font-weight: bold;

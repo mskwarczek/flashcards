@@ -1,0 +1,14 @@
+{
+    "intro": "Fiszki do nauki języków, pojęć, dat i innych informacji, które trzeba po prostu zapamiętać :)",
+    "loginError": "Błąd logowania.",
+    "email": "EMAIL",
+    "password": "HASŁO",
+    "logIn": "Zaloguj",
+    "registerInfo": "Nie masz konta? Zajmie to tylko chwilkę i wymaga jedynie podania nazwy użytkownika, e-maila i hasła.",
+    "registerNote": "Uwaga: To projekt do doskonalenia umiejętności programistycznych autora, możesz podać wymyśony adres e-mail. Nie będą na niego wysyłane żadne wiadomości.",
+    "register": "Rejestracja",
+    "testDescription": "Przetestuj aplikację bez rejestracji i logowania. Dostępna będzie jedynie funkcja treningu.",
+    "test": "Bez logowania",
+    "aboutDescription": "Pierwszy raz spotykasz się z pojęciem fiszek (ang. flashcards)? Dowiedz się więcej! ",
+    "about": "O fiszkach"
+}

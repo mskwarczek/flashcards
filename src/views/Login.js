@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 import apiCall from '../common/apiCall';
 import { setUserData } from '../common/reducers/userActions';
@@ -66,45 +67,46 @@ class Login extends Component {
 
     render() {
         const { email, password, error } = this.state;
+        const { t } = this.props;
         return (
             <div className='login'>
-                <h3>Fiszki do nauki języków, pojęć, dat i innych informacji, które trzeba po prostu zapamiętać :)</h3>
+                <h3>{t('intro')}</h3>
                 <div className='login__form'>
                     { error === '401'
-                        ? <p>Błąd logowania.</p>
+                        ? <p>{t('loginError')}</p>
                         : null
                     }
                     <form>
                         <input className='form-input'
                             type='email'
                             name='email'
-                            placeholder='EMAIL'
+                            placeholder={t('email')}
                             value={ email }
                             onChange={ this.handleChange }
                             required />
                         <input className='form-input'
                             type='password'
                             name='password'
-                            placeholder='HASŁO'
+                            placeholder={t('password')}
                             value={ password }
                             onChange={ this.handleChange }
                             required />
-                        <input className='button button--important' type='button' value='Zaloguj' onClick={ this.login } />
+                        <input className='button button--important' type='button' value={t('logIn')} onClick={ this.login } />
                     </form>
                 </div>
                 <div className='login__flex-container'>
                     <div>
-                        <p>Nie masz konta? Zajmie to tylko chwilkę i wymaga jedynie podania nazwy użytkownika, e-maila i hasła.</p>
-                        <p className='note'>Uwaga: To projekt do doskonalenia umiejętności programistycznych autora, możesz podać wymyśony adres e-mail. Nie będą na niego wysyłane żadne wiadomości.</p>
-                        <NavLink to='/register' className='button'>Rejestracja</NavLink>
+                        <p>{t('registerInfo')}</p>
+                        <p className='note'>{t('registerNote')}</p>
+                        <NavLink to='/register' className='button'>{t('register')}</NavLink>
                     </div>
                     <div>
-                        <p>Przetestuj aplikację bez rejestracji i logowania. Dostępna będzie jedynie funkcja treningu.</p>
-                        <NavLink to='/home' className='button'>Bez logowania</NavLink>
+                        <p>{t('testDescription')}</p>
+                        <NavLink to='/home' className='button'>{t('test')}</NavLink>
                     </div>
                 </div>
                 <div>
-                    <p>Pierwszy raz spotykasz się z pojęciem fiszek (ang. flashcards)? Dowiedz się więcej! <NavLink to='/about' className='inline-link'>O fiszkach</NavLink></p>
+                    <p>{t('aboutDescription')}<NavLink to='/about' className='inline-link'>{t('about')}</NavLink></p>
                 </div>
             </div>
         );
@@ -116,4 +118,4 @@ Login.propTypes = {
     setUserData: PropTypes.func.isRequired
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation('login')(Login)));

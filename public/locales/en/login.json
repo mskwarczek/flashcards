@@ -1,0 +1,14 @@
+{
+    "intro": "Flashcards for learning languages, concepts, dates and other information that you just have to remember :)",
+    "loginError": "Login error.",
+    "email": "EMAIL",
+    "password": "PASSWORD",
+    "logIn": "Log in",
+    "registerInfo": "You don't have an account? It will only take a moment and only requires you to enter your username, email and password.",
+    "registerNote": "Note: This project was developed to improve the author's programming skills, you can enter a fancy e-mail address. No messages will be sent to it.",
+    "register": "Registration",
+    "testDescription": "Test the application without registering and logging in. Only the training function will be available.",
+    "test": "Test entry",
+    "aboutDescription": "Is this the first time you've met the concept of flashcards? Learn more! ",
+    "about": "About flashcards"
+}

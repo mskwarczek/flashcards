@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 import apiCall from '../common/apiCall';
 import { setUserData, clearUserData } from '../common/reducers/userActions';
@@ -39,23 +40,32 @@ class Header extends Component {
     };
 
     render() {
-        const { user, location } = this.props;
+        const { user, location, t, i18n } = this.props;
         return (
             <div className='header'>
                 { user.username && location.pathname !== '/'
                     ? <div className='user-panel'>
                         <div>
-                            <p>Witaj <span className='highlight'>{ user.username }</span>!</p>
+                            <p>{t('wellcome')}<span className='highlight'>{ user.username }</span>!</p>
                         </div>
                         <div className='user-panel__buttons'>
-                            <NavLink to='/profile' className='button button--small'>Profil</NavLink>
-                            <input type='button' className='button button--small' value='Wyloguj' onClick={ this.logout } />
+                            <input type='button' className='button button--lang' onClick={() => i18n.changeLanguage('pl')} value='PL' />
+                            <input type='button' className='button button--lang' onClick={() => i18n.changeLanguage('en')} value='EN' />
+                            <NavLink to='/profile' className='button button--small'>{t('profile')}</NavLink>
+                            <input type='button' className='button button--small' value={t('logout')} onClick={ this.logout } />
                         </div>
                     </div>
                     : <div className='user-panel__buttons'>
                         { location.pathname !== '/'
-                            ? <NavLink to='/' className='button button--small'>Logowanie</NavLink>
-                            : null
+                            ? <div className='user-panel__buttons'>
+                                <input type='button' className='button button--lang' onClick={() => i18n.changeLanguage('pl')} value='PL' />
+                                <input type='button' className='button button--lang' onClick={() => i18n.changeLanguage('en')} value='EN' />
+                                <NavLink to='/' className='button button--small'>{t('login')}</NavLink>
+                            </div>
+                            : <div className='user-panel__buttons'>
+                                <input type='button' className='button button--lang' onClick={() => i18n.changeLanguage('pl')} value='PL' />
+                                <input type='button' className='button button--lang' onClick={() => i18n.changeLanguage('en')} value='EN' />
+                            </div> 
                         }
                     </div>
                 }
@@ -65,7 +75,7 @@ class Header extends Component {
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation('header')(Header)));
 
 Header.propTypes = {
     user: PropTypes.object.isRequired,
