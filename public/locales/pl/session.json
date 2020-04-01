@@ -1,0 +1,21 @@
+{
+    "errorFlashcardsFetch": "Nie udało się pobrać fiszek.",
+    "errorEndOfSet": "W wybranym zestawie nie ma więcej fiszek do nauki. Wszystkie już umiesz! Wybierz nowy zestaw lub zresetuj postępy w ustwieniach swojego profilu.",
+    "training": "Trening",
+    "test": "Test",
+    "back": "Powrót",
+    "chooseSet": "Wybierz zestaw fiszek",
+    "finish": "Zakończ",
+    "break": "Przerwij",
+    "warningSessionNotSaved": "Twoja sesja nie zostanie zapisana",
+    "congratulations": "Gratulacje! Zakończyłeś/aś dzisiejszą sesję nauki! :)",
+    "goToSummary": "Przejdź do podsumowania.",
+    "continue": "Kontynuuj",
+    "dataFetch": "Trwa pobieranie danych z serwera...",
+    "check": "Sprawdź",
+    "known": "Umiem!",
+    "unknown": "Nie umiem",
+    "next": "Dalej",
+    "boxKnown": "Znane",
+    "boxUnknown": "Nieznane"
+}

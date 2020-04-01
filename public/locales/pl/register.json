@@ -1,0 +1,12 @@
+{
+    "missingFields": "Musisz uzupełnić wszystkie pola.",
+    "duplicateEmail": "Ten adres email i/lub nazwa użytkownika są już zajęte.",
+    "badPassword": "Hasło i jego powtórzenie muszą być identyczne.",
+    "email": "EMAIL",
+    "userName": "NAZWA UŻYTKOWNIKA",
+    "password": "HASŁO",
+    "repeatPassword": "POWTÓRZ HASŁO",
+    "initialSet": "Wybierz początkowy zestaw fiszek. Możesz go zmienić w każdym momencie w ustawieniach profilu.",
+    "register": "Rejestracja",
+    "back": "Powrót"
+}

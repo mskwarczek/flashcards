@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withTranslation } from 'react-i18next';
 
 import LoginRedirect from './LoginRedirect';
 import SetsSelect from './SetsSelect';
@@ -52,6 +53,7 @@ class Profile extends Component {
     };
 
     flashcardsSetUpdate = () => {
+        const { t } = this.props;
         const { chosenFlashcardsSet } = this.state;
         const newData = JSON.stringify({ activeFlashcardsSet: chosenFlashcardsSet, flashcards: [] });
         apiCall('/api/user/update', {
@@ -62,7 +64,7 @@ class Profile extends Component {
             body: newData
         }, (res, err) => {
             if (err) {
-                this.setState({ message: `Coś się nie udało. ${err.message}` });
+                this.setState({ message: `${t('msgFail')} ${err.message}` });
             }
             else {
                 apiCall('/api/user', {}, (res, err) => {
@@ -70,7 +72,7 @@ class Profile extends Component {
                         this.props.setUserData(res);
                     };
                 });
-                this.setState({ message: 'Operacja zakończona powodzeniem.' });
+                this.setState({ message: t('msgSuccess') });
             };
         });
     };
@@ -85,6 +87,7 @@ class Profile extends Component {
     };
 
     resetFlashcards = () => {
+        const { t } = this.props;
         let newData = JSON.stringify({ activeFlashcardsSet: undefined, flashcards: [] });
         apiCall('/api/user/update', {
             method: 'PUT',
@@ -94,32 +97,33 @@ class Profile extends Component {
             body: newData
         }, (res, err) => {
             if (err) {
-                this.setState({ message: `Coś się nie udało. ${err.message}` });
+                this.setState({ message: `${t('msgFail')} ${err.message}` });
             } else {
                 this.props.resetFlashcards();
-                this.setState({ message: 'Operacja zakończona powodzeniem.' });
+                this.setState({ message: t('msgSuccess') });
             };
         });
     };
 
     render() {
+        const { t } = this.props;
         const { username, email, isLoggedIn } = this.props.user;
         const { message, chosenFlashcardsSet, flashcardsSets } = this.state;
         if (!isLoggedIn) {
             return (
                 <div>
-                    <h2>Profil użytkownika</h2>
+                    <h2>{t('userProfile')}</h2>
                     <LoginRedirect />
                 </div>
             );
         };
         return (
             <div>
-                <h2>Profil użytkownika</h2>
+                <h2>{t('userProfile')}</h2>
                 <div>
-                    <h3>Twoje dane</h3>
-                    <p>Nazwa użytkownika: <span className='highlight'>{ username }</span></p>
-                    <p>Adres email: <span className='highlight'>{ email }</span></p>
+                    <h3>{t('userData')}</h3>
+                    <p>{t('userName')} <span className='highlight'>{ username }</span></p>
+                    <p>{t('userEmail')} <span className='highlight'>{ email }</span></p>
                 </div>
                     <div>
                         { message
@@ -128,24 +132,24 @@ class Profile extends Component {
                         }
                     </div>
                 <div>
-                    <h3>Opcje konta</h3>
-                    <h4>Twój aktywny zestaw fiszek</h4>
+                    <h3>{t('accountOptions')}</h3>
+                    <h4>{t('activeFlashcardsSet')}</h4>
                     <SetsSelect name='flashcardsSets' onChange={ this.handleChange } value={ chosenFlashcardsSet } sets={ flashcardsSets }/>
-                    <p>Możesz wybrać inny zestaw z listy. Zmiana zestawu spowoduje zresetowanie wszystkich postępów.</p>
-                    <input type='button' className='button' value='Zmień' onClick={ this.flashcardsSetUpdate } /><br />
-                    <p>Resetowanie postępów - wszystkie fiszki nieodwracalnie wrócą poza pudełko.</p>
-                    <input type='button' className='button' value='Resetuj' onClick={ this.resetFlashcards } /><br />
+                    <p>{t('setChangeInfo')}</p>
+                    <input type='button' className='button' value={t('change')} onClick={ this.flashcardsSetUpdate } /><br />
+                    <p>{t('progressResetInfo')}</p>
+                    <input type='button' className='button' value={t('reset')} onClick={ this.resetFlashcards } /><br />
                 </div>
                 <div>
-                <input type='button' className='button' value='Wyloguj' onClick={ this.logout } /><br />
-                <NavLink to='/home' className='button button--important'>Powrót</NavLink>
+                <input type='button' className='button' value={t('logout')} onClick={ this.logout } /><br />
+                <NavLink to='/home' className='button button--important'>{t('back')}</NavLink>
                 </div>
             </div>
         );
     };
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation('profile')(Profile)));
 
 Profile.propTypes = {
     user: PropTypes.object.isRequired,

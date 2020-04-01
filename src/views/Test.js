@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 import Card from './Card';
 import LoginRedirect from './LoginRedirect';
@@ -63,9 +64,10 @@ class Test extends Component {
     };
 
     getData = () => {
+        const { t } = this.props;
         apiCall(`api/flashcards/${this.props.user.activeFlashcardsSet._id}`, {}, (res, err) => {
             if (err) {
-                this.setState({ error: `Nie udało się pobrać fiszek. ${err.message}` });
+                this.setState({ error: `${t('errorFlashcardsFetch')} ${err.message}` });
             } else {
                 this.prepareFlashcards(res);
             };
@@ -73,6 +75,7 @@ class Test extends Component {
     };
 
     prepareFlashcards = (cards) => {
+        const { t } = this.props;
         cards = this.combineUserWithCards(cards);
         cards = this.fillFirstBox(cards);
         cards.sort((a, b) => b.box - a.box);
@@ -81,7 +84,7 @@ class Test extends Component {
         if (this.props.cards.length > newIndex) {
             this.setState({ running: 1, index: newIndex });
         } else {
-            this.setState({ error: 'W wybranym zestawie nie ma więcej fiszek do nauki. Wszystkie już umiesz! Wybierz nowy zestaw lub zresetuj postępy w ustwieniach swojego profilu.' });
+            this.setState({ error: t('errorEndOfSet') });
         };
     };
 
@@ -155,23 +158,24 @@ class Test extends Component {
 
     render() {
         const { isReverse, running, error, index } = this.state;
+        const { t } = this.props;
         if (error) {
             return (
                 <div>
-                    <h2>Test</h2>
+                    <h2>{t('test')}</h2>
                     <p>{ error }</p><br />
-                    <NavLink to='/home' className='button'>Powrót</NavLink>
+                    <NavLink to='/home' className='button'>{t('back')}</NavLink>
                 </div>
             );
         } else {
             switch (running) {
                 case 0: return (
                     <div className='test'>
-                        Trwa pobieranie danych z serwera...
+                        {t('dataFetch')}
                     </div>);
                 case 1: return (
                     <div className='test'>
-                        <h2>Test</h2>
+                        <h2>{t('test')}</h2>
                         <Card
                             card={ this.props.cards[index] }
                             test={ true }
@@ -181,19 +185,19 @@ class Test extends Component {
                         <ProgressBar
                             cards={ this.props.cards }
                             current={ index } />
-                        <NavLink to='/home' className='button'>Przerwij</NavLink>
-                        <p>Twoja sesja nie zostanie zapisana</p>
+                        <NavLink to='/home' className='button'>{t('break')}</NavLink>
+                        <p>{t('warningSessionNotSaved')}</p>
                     </div>);
                 case 2: return (
                     <div>
-                        <h2>Test</h2>
-                        <p>Gratulacje! Zakończyłeś/aś dzisiejszą sesję nauki! :)</p>
-                        <p>Przejdź do podsumowania.</p><br />
-                        <input type='button' className='button button--important' value='Kontynuuj' onClick={ this.updateUserData } />
+                        <h2>{t('test')}</h2>
+                        <p>{t('congratulations')}</p>
+                        <p>{t('goToSummary')}</p><br />
+                        <input type='button' className='button button--important' value={t('continue')} onClick={ this.updateUserData } />
                     </div>);
                 case -1: return (
                     <div>
-                        <h2>Test</h2>
+                        <h2>{t('test')}</h2>
                         <LoginRedirect />
                     </div>);
                 default: return null;
@@ -211,4 +215,4 @@ Test.propTypes = {
     setUserData: PropTypes.func.isRequired
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Test));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withTranslation('session')(Test)));

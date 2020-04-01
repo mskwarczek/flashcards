@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
 import SummaryBox from './SummaryBox';
 import LoginRedirect from './LoginRedirect';
@@ -30,11 +31,11 @@ class Summary extends Component {
     };
 
     render() {
-        const { box, afterTest, user } = this.props;
+        const { box, afterTest, user, t } = this.props;
         if (!user) {
             return (
                 <div>
-                    <h2>Podsumowanie</h2>
+                    <h2>{t('summary')}</h2>
                     <LoginRedirect />
                 </div>
             );
@@ -42,10 +43,10 @@ class Summary extends Component {
         if (box.length === 0) {
             return (
                 <div>
-                    <h2>Podsumowanie</h2>
-                    <p>Nie masz jeszcze żadnych fiszek w pudełku. Wykonaj swój pierwszy test aby dodać kilka.</p><br />
-                    <NavLink to='/test' className='button button--important'>Test</NavLink><br />
-                    <NavLink to='/home' className='button'>Powrót</NavLink>
+                    <h2>{t('summary')}</h2>
+                    <p>{t('emptyBox')}</p><br />
+                    <NavLink to='/test' className='button button--important'>{t('test')}</NavLink><br />
+                    <NavLink to='/home' className='button'>{t('back')}</NavLink>
                 </div>
             );
         };
@@ -55,20 +56,20 @@ class Summary extends Component {
         };
         return (
             <div className='summary'>
-                <h2>Podsumowanie</h2><br />
+                <h2>{t('summary')}</h2><br />
                 { afterTest
-                    ? <p>Gratulacje! Zakończyłeś/aś swoją dzisiejszą sesję nauki! :)</p>
+                    ? <p>{t('congratulations')}</p>
                     : null
                 }
-                <p>Aktualny stan twojego pudełka z fiszkami:</p>
+                <p>{t('boxState')}</p>
                 <div className='summary-box-container'>
-                    <SummaryBox boxNumber={ 'Jeszcze nie znasz' } boxAmount={ box[0].length } />
+                    <SummaryBox boxNumber={t('unknown')} boxAmount={ box[0].length } />
                     <div className='summary-box'>
                         { boxes }
                     </div>
-                    <SummaryBox boxNumber={ 'Już umiesz' } boxAmount={ box[6].length } />
+                    <SummaryBox boxNumber={t('known')} boxAmount={ box[6].length } />
                 </div>
-                <NavLink to='/home' className='button button--important'>Kontynuuj</NavLink>
+                <NavLink to='/home' className='button button--important'>{t('continue')}</NavLink>
             </div>
         );
     };
@@ -85,4 +86,4 @@ Summary.defaultProps = {
     afterTest: false
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Summary);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation('summary')(Summary));

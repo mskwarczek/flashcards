@@ -9,7 +9,18 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    ns: ['header', 'login'],
+    ns: [
+        'header',
+        'login',
+        'register',
+        'login-redirect',
+        'about',
+        'home',
+        'session',
+        'summary',
+        'profile',
+        'sets',
+    ],
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json'
     },

@@ -1,0 +1,21 @@
+{
+    "errorFlashcardsFetch": "Failed to download flashcards.",
+    "errorEndOfSet": "There are no more unknown flashcards in the selected set. You know them all! Choose a new set or reset your profile's progress.",
+    "training": "Training",
+    "test": "Test",
+    "back": "Back",
+    "chooseSet": "Choose a set of flashcards",
+    "finish": "Finish",
+    "break": "Break",
+    "warningSessionNotSaved": "Your session will not be saved",
+    "congratulations": "Congratulations! You have finished today's learning session! :)",
+    "goToSummary": "Go to summary",
+    "continue": "Continue",
+    "dataFetch": "Loading data from the server ...",
+    "check": "Check",
+    "known": "I know that!",
+    "unknown": "I don't know yet",
+    "next": "Continue",
+    "boxKnown": "Known",
+    "boxUnknown": "Unknown"
+}

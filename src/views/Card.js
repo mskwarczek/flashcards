@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 const Card = (props) => {
+
+    const { t } = useTranslation('session');
 
     const flipCard = () => {
         const front = document.querySelector('.card__front');
@@ -24,7 +27,7 @@ const Card = (props) => {
                 <p className='card__title'>{ front.text }</p>
                 { front.note && <p className='note'>{ front.note }</p> }
                 <div className='card__button-box'>
-                    <div className='button' onClick={ () => flipCard() }>Sprawdź</div>
+                    <div className='button' onClick={ () => flipCard() }>{t('check')}</div>
                 </div>
             </div>
             <div className='card__back '>
@@ -36,17 +39,17 @@ const Card = (props) => {
                         <div className='button' onClick={ () => {
                             flipCard();
                             props.pushBackward(id)
-                        }}>Nie umiem</div>
+                        }}>{t('known')}</div>
                         <div className='button' onClick={ () => {
                             flipCard();
                             props.pushForward(id)
-                        }}>Umiem!</div>
+                        }}>{t('unknown')}</div>
                     </div>
                     : <div className='card__button-box'>
                         <div className='button' onClick={ () => {
                             flipCard();
                             props.nextCard()
-                        }}>Dalej</div>
+                        }}>{t('next')}</div>
                     </div>
                 }
             </div>

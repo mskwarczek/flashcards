@@ -1,0 +1,12 @@
+{
+    "summary": "Podsumowanie",
+    "emptyBox": "Nie masz jeszcze żadnych fiszek w pudełku. Wykonaj swój pierwszy test aby dodać kilka.",
+    "test": "Test",
+    "back": "Powrót",
+    "congratulations": "Gratulacje! Zakończyłeś/aś swoją dzisiejszą sesję nauki! :)",
+    "boxState": "Aktualny stan twojego pudełka z fiszkami:",
+    "unknown": "Jeszcze nie znasz",
+    "known": "Już umiesz",
+    "continue": "Kontynuuj",
+    "flashcards": "Fiszki"
+}

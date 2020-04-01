@@ -1,0 +1,12 @@
+{
+    "title": "About flashcards",
+    "whatAreFlashcards": "What are flashcards?",
+    "whatAreFlashcardsDescription": "A flashcard is a learning card written on both sides. On one page there is a question or concept that you want to learn. On the other page there is an answer or explanation. For example, on one page there may be a word written in in Polish, the name of a historical event or a term in any field, and on the other page the same word in English, date of the event or definition of the term. The flashcards should be viewed looking only at the first page and trying to answer the question contained on it. Then look to the other side and see if the answer was correct.",
+    "howToUseFlashcards": "How to use flashcards?",
+    "howToUseFlashcardsDescription_1": "Originally, a box with compartments was used to learn with flashcards. The Flashcards application is similar, but the boxes have a virtual form. Initially, all the cards are in the 'zero' compartment, outside of the box. There are 5 compartments in the box. After choosing the ",
+    "test": "Test",
+    "howToUseFlashcardsDescription_2": " option from the main menu, the compartment with the number 1 is automatically topped up with a few to a dozen flashcards. The flashcards are displayed successively from the compartment with the highest number (5). If you know the answer, the flashcard is moved to the higher compartment. If it was already in compartment number 5, then it is moved out of the box - you already know it. If your answer was incorrect - the card always goes to compartment with number 1. You can take the test any number of times, but the optimal solution is to do it only once a day so that the brain will forget some concepts before you take the next test. However, if you want to continue learning, you can choose ",
+    "training": "Training",
+    "howToUseFlashcardsDescription_3": " option - then all flashcards will be displayed in random order and you can study as long as you like.",
+    "back": "Back"
+}

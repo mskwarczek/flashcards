@@ -1,0 +1,16 @@
+{
+    "msgFail": "Something went wrong.",
+    "msgSuccess": "Operation completed successfully.",
+    "userProfile": "User profile",
+    "userData": "Your data",
+    "userName": "User name:",
+    "userEmail": "Email address:",
+    "accountOptions": "Account options",
+    "activeFlashcardsSet": "Your active set of flashcards",
+    "setChangeInfo":  "You can choose a different set from the list. Changing the set will reset all progress.",
+    "change": "Change",
+    "progressResetInfo": "Resetting progress - all flashcards will be irreversibly removed from the box.",
+    "reset": "Reset",
+    "logout": "Log out",
+    "back": "Back"
+}

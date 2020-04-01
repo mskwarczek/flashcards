@@ -1,6 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const SetsSelect = (props) => {
+
+    const { t } = useTranslation('sets');
+
     const selected = props.sets.filter(set => set._id === props.value)[0];
     return (
         <div className='select-container'>
@@ -9,10 +13,10 @@ const SetsSelect = (props) => {
                     ? props.sets.map(set => {
                         return <option key={ set._id } value={ set._id }>{ set.name } [{ set.lang }]</option>
                     })
-                    : <option>Wczytywanie zestawów fiszek...</option>
+                    : <option>{t('loadingSets')}</option>
                 }
             </select>
-            <p className='small-screen-info'>Wybrano: { selected && selected.name }</p>
+            <p className='small-screen-info'>{t('chosen')}: { selected && selected.name }</p>
         </div>
     );
 };

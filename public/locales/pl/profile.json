@@ -1,0 +1,16 @@
+{
+    "msgFail": "Coś się nie udało.",
+    "msgSuccess": "Operacja zakończona powodzeniem.",
+    "userProfile": "Profil użytkownika",
+    "userData": "Twoje dane",
+    "userName": "Nazwa użytkownika:",
+    "userEmail": "Adres email:",
+    "accountOptions": "Opcje konta",
+    "activeFlashcardsSet": "Twój aktywny zestaw fiszek",
+    "setChangeInfo": "Możesz wybrać inny zestaw z listy. Zmiana zestawu spowoduje zresetowanie wszystkich postępów.",
+    "change": "Zmień",
+    "progressResetInfo": "Resetowanie postępów - wszystkie fiszki zostaną nieodwracalnie wyjęte z pudełka.",
+    "reset": "Resetuj",
+    "logout": "Wyloguj",
+    "back": "Powrót"
+}

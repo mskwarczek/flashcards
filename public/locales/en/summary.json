@@ -1,0 +1,12 @@
+{
+    "summary": "Summary",
+    "emptyBox": "You don't have any flashcards in the box yet. Take your first test to add some.",
+    "test": "Test",
+    "back": "Back",
+    "congratulations": "Congratulations! You have finished today's learning session! :)",
+    "boxState": "Current state of your box with flashcards:",
+    "unknown": "Unknown flashcards",
+    "known": "Already learnt",
+    "continue": "Continue",
+    "flashcards": "Flashcards"
+}
