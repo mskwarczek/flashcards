@@ -39,11 +39,11 @@ const Card = (props) => {
                         <div className='button' onClick={ () => {
                             flipCard();
                             props.pushBackward(id)
-                        }}>{t('known')}</div>
+                        }}>{t('unknown')}</div>
                         <div className='button' onClick={ () => {
                             flipCard();
                             props.pushForward(id)
-                        }}>{t('unknown')}</div>
+                        }}>{t('known')}</div>
                     </div>
                     : <div className='card__button-box'>
                         <div className='button' onClick={ () => {
